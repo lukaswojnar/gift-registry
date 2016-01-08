@@ -15,3 +15,28 @@
  *= require foundation_and_overrides
 
  */
+$blue: #3299BB;
+$lightgrey: #E9E9E9;
+$darkgrey: #424242;
+$grey: #BCBCBC;
+$orange: #FF9900;
+
+
+ body {
+  background: url('giftly.png') repeat;
+ }
+
+h1 {
+  color: $blue;
+}
+
+.main-content {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255,255,255,0.5);
+}
+
+.form-actions {
+  margin-top: 30px;
+  font-size: 80%;
+}
