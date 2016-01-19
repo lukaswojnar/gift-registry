@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :gift
 
-  resources :giftlists do
+  resources :giftlist do
     resources :gifts
   end
 

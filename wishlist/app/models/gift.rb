@@ -5,4 +5,5 @@ class Gift < ActiveRecord::Base
   validates :link, presence:  true
   # img optional?
   # status?
+  belongs_to :giftlist
 end
