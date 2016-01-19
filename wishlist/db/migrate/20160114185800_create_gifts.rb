@@ -3,6 +3,9 @@ class CreateGifts < ActiveRecord::Migration
     create_table :gifts do |t|
       t.string :title
       t.text :description
+      t.float :price
+      t.string :link
+      t.integer :status
 
       t.timestamps null: false
     end

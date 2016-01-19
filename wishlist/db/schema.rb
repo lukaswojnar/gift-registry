@@ -11,14 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106112732) do
+ActiveRecord::Schema.define(version: 20160119194346) do
 
-  create_table "gifts", force: :cascade do |t|
+  create_table "giftlists", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "gifts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.float    "price"
+    t.string   "link"
+    t.integer  "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "giftlist_id"
+  end
+
+  add_index "gifts", ["giftlist_id"], name: "index_gifts_on_giftlist_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
