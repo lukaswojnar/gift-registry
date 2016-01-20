@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GiftlistControllerTest < ActionController::TestCase
+class ListsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
