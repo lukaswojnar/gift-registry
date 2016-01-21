@@ -13,6 +13,18 @@
   </div>
   <div class="row">
     <div class="small-12 columns">
+      <%= f.label :price %>
+      <%= f.number_field :price, min: 0 %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= f.label :link %>
+      <%= f.text_field :link, placeholder: 'www.somelink.com' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
         <%= f.submit "Insert new gift to current list" %>
     </div>
   </div>
