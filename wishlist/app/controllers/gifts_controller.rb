@@ -13,7 +13,7 @@ class GiftsController < ApplicationController
 
   def index
     @gifts = Gift.where(:list_id => params[:list_id])
-    @list = @list = List.find params[:list_id]
+    @list = List.find params[:list_id]
   end
 
   def edit
@@ -30,6 +30,10 @@ class GiftsController < ApplicationController
     end
   end
 
+  def assigned_to
+    @gift = Gift.find(params[:id])
+  end
+
   def destroy
     @gift = Gift.find(params[:id])
     @gift.destroy
@@ -39,7 +43,7 @@ class GiftsController < ApplicationController
 
   private
      def gift_params
-       params.require(:gift).permit(:title, :description, :link, :price)
+       params.require(:gift).permit(:title, :description, :link, :price, :assigned_to)
      end
 
 end

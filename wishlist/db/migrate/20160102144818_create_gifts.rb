@@ -5,7 +5,7 @@ class CreateGifts < ActiveRecord::Migration
       t.text :description
       t.string :link
       t.integer :price
-      t.boolean :assigned
+      t.string :assigned_to
       t.timestamps null: false
     end
   end
