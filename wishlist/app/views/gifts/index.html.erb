@@ -1,3 +1,29 @@
-<% @gifts.each do |g| %>
-  <%= g.title %><br>
-<% end %>
+<div class="row">
+<div class="small-12 columns">
+  <table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Link</th>
+      <th>Price</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      <th>Assignee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @gifts.each do |g| %>
+      <tr>
+        <td><%= g.title %></td>
+        <td><%= g.description %></td>
+        <td><%= link_to g.link, g.link %></td>
+        <td><%= g.price %></td>
+        <td><%= link_to 'Edit', edit_list_gift_path(@list, g) %></td>
+        <td><%= link_to 'Destroy', list_gift_path(@list, g), method: :delete, data: { confirm: "Destroy?"} %></td>
+        <td>Some name</td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>

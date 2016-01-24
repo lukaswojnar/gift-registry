@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160121123708) do
     t.string   "title"
     t.text     "description"
     t.string   "link"
-    t.float    "price"
+    t.integer  "price"
     t.boolean  "assigned"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
