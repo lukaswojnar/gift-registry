@@ -30,10 +30,6 @@ class GiftsController < ApplicationController
     end
   end
 
-  def assigned_to
-    @gift = Gift.find(params[:id])
-  end
-
   def destroy
     @gift = Gift.find(params[:id])
     @gift.destroy
