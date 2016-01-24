@@ -20,7 +20,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
 
     if @list.save
-      redirect_to @list
+      redirect_to controller: 'lists', action: 'index'
     else
       render 'new'
     end
