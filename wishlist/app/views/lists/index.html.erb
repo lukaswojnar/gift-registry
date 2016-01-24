@@ -14,7 +14,7 @@
       <tbody>
       <% @lists.each do |l| %>
         <tr>
-          <td><%= l.title %></td>
+          <td><%= link_to l.title, new_list_gift_path(l.id) %></td>
           <td><%= l.description %></td>
           <td><%= link_to 'Edit', edit_list_path(l) %></td>
           <td><%= link_to 'Destroy', lists_path(l), method: :delete, data: { confirm: "Destroy?"} %></td>
