@@ -7,8 +7,10 @@ class Gift < ActiveRecord::Base
    protected
 
    def smart_add_url_protocol
-     unless self.link[/\Ahttp:\/\//] || self.link[/\Ahttps:\/\//]
-       self.link = "http://#{self.link}"
+     if !self.link.empty?
+       unless self.link[/\Ahttp:\/\//] || self.link[/\Ahttps:\/\//]
+         self.link = "http://#{self.link}"
+       end
      end
    end
 

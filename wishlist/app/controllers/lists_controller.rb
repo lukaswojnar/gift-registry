@@ -5,7 +5,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
+    redirect_to controller: 'gifts', action: 'index', :list_id => params[:id]
   end
 
   def new

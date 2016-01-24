@@ -12,6 +12,7 @@ class GiftsController < ApplicationController
   end
 
   def index
+    @gift = Gift.new
     @gifts = Gift.where(:list_id => params[:list_id])
     @list = List.find params[:list_id]
   end
