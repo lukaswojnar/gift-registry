@@ -7,7 +7,7 @@
    <li>Vestibulum auctor dapibus neque.</li>
 </ul>
 
-<%= form_tag({:controller => "lists", :action => "search"}, method: :post) do %>
+<%= form_tag({:controller => "welcome", :action => "search"}, method: :post) do %>
      <%= text_field_tag :query, params[:query], {:placeholder=>"Search"}  %>
      <%= submit_tag "Search" %>               
 <% end %>

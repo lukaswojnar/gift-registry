@@ -8,15 +8,6 @@ class ListsController < ApplicationController
     redirect_to controller: 'gifts', action: 'index', :list_id => params[:id]
   end
 
-  def search
-    l = List.find_by share_code: params[:query]
-    unless l.blank?
-      redirect_to controller: 'gifts', action: 'index', :list_id => l
-    else
-      redirect_to controller: 'welcome', action: 'index'
-    end
-  end
-
   def new
     @list = List.new
   end
