@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
 
   def index
-    @lists = List.all # there should be filtering
+    @lists = current_user.lists
   end
 
   def show
@@ -28,6 +28,7 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     @list.share_code = Digest::SHA1.hexdigest([Time.now, rand].join)
+    @list.user_id = current_user.id
 
     if @list.save
       redirect_to controller: 'lists', action: 'index'
