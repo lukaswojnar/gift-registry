@@ -3,7 +3,11 @@ class WelcomeController < ApplicationController
   end
 
   def search
-    redirect_to '/search/'+params[:query]
+    if params[:query].blank?
+      redirect_to(:back)
+    else
+      redirect_to '/search/'+params[:query]
+    end
   end
 
 end
