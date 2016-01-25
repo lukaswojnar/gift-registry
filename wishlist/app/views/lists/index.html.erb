@@ -20,7 +20,7 @@
           <td><%= link_to 'Edit', edit_list_path(l) %></td>
           <td><%= link_to 'Destroy', lists_path(l), method: :delete, data: { confirm: "Destroy?"} %></td>
           <td><%= l.share_code %></td>
-          <td>Some name</td>
+          <td><%= current_user.email %></td>
         </tr>
       <% end %>
       </tbody>
