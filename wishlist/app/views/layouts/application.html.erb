@@ -36,8 +36,8 @@
       <!-- Left Nav Section -->
       <ul class="left">
         <% if user_signed_in? %>
-          <li><a href="#">My lists</a></li>
-          <li><a href="#">New list</a></li>
+          <li><%= link_to 'My lists', lists_path %></li>
+          <li><%= link_to 'New List', new_list_path %></li>
         <% end %>
       </ul>
     </section>

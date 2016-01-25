@@ -1,7 +1,10 @@
 class GiftsController < ApplicationController
+  before_action :authenticate_user!, :except => [:search, :assign]
+
   def new
     @gift = Gift.new
     @list = List.find params[:list_id]
+    authorize! :read, @list
   end
 
   def create
@@ -15,15 +18,18 @@ class GiftsController < ApplicationController
     @gift = Gift.new
     @gifts = Gift.where(:list_id => params[:list_id])
     @list = List.find params[:list_id]
+    authorize! :read, @list
   end
 
   def edit
     @gift = Gift.find(params[:id])
     @list = List.find params[:list_id]
+    authorize! :edit, @gift
   end
 
   def update
     @gift = Gift.find(params[:id])
+    authorize! :update, @gift
     if @gift.update_attributes(gift_params)
       redirect_to controller: 'gifts', action: 'index'
     else
@@ -42,6 +48,7 @@ class GiftsController < ApplicationController
     l = List.find_by share_code: params[:id]
     unless l.blank?
       @gifts = Gift.where(:list_id => l)
+      @list = l
     else
       redirect_to controller: 'welcome', action: 'index'
     end

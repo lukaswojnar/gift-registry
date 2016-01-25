@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @lists = current_user.lists
@@ -14,6 +15,7 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
+    authorize! :edit, @list
   end
 
   def create
