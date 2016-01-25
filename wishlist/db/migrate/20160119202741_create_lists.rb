@@ -3,6 +3,7 @@ class CreateLists < ActiveRecord::Migration
     create_table :lists do |t|
       t.string :title
       t.text :description
+      t.string :share_code
 
       t.timestamps null: false
     end

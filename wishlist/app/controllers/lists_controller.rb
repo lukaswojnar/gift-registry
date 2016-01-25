@@ -18,6 +18,7 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    @list.share_code = Digest::SHA1.hexdigest([Time.now, rand].join)
 
     if @list.save
       redirect_to controller: 'lists', action: 'index'
