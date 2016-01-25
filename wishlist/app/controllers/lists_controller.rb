@@ -47,6 +47,10 @@ class ListsController < ApplicationController
     redirect_to lists_path
   end
 
+  def buy 
+    @gifts = Gift.where(:assigned_to => current_user.email)
+  end
+
   private
   def list_params
     params.require(:list).permit(:title, :text)
