@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20160126170113) do
 
   create_table "events", force: :cascade do |t|
-    t.string   "name"
+    t.string   "title"
     t.text     "description"
-    t.datetime "start"
-    t.datetime "end"
+    t.datetime "date"
+    t.text     "address"
+    t.integer  "list_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "list_id"
   end
 
   add_index "events", ["list_id"], name: "index_events_on_list_id"
