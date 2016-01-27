@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 20160127104238) do
     t.boolean  "status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "inivted_user_id"
+    t.integer  "invited_user_id"
     t.integer  "list_id"
   end
 
-  add_index "invitations", ["inivted_user_id"], name: "index_invitations_on_inivted_user_id"
+  add_index "invitations", ["invited_user_id"], name: "index_invitations_on_invited_user_id"
   add_index "invitations", ["list_id"], name: "index_invitations_on_list_id"
 
   create_table "lists", force: :cascade do |t|
