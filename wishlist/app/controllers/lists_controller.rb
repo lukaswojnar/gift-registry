@@ -15,12 +15,10 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
-    authorize! :edit, @list
   end
 
   def create
     @list = List.new(list_params)
-    @list.share_code = Digest::SHA1.hexdigest([Time.now, rand].join)
     @list.user_id = current_user.id
 
     if @list.save
@@ -43,17 +41,12 @@ class ListsController < ApplicationController
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-
     redirect_to lists_path
-  end
-
-  def buy 
-    @gifts = Gift.where(:assigned_to => current_user.email)
   end
 
   private
   def list_params
-    params.require(:list).permit(:title, :text)
+    params.require(:list).permit(:title, :description, :address, :event_date)
   end
 
 end

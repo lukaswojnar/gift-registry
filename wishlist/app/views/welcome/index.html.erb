@@ -1,16 +1,6 @@
 <div class="row">
-  <div class="medium-8 columns">
+  <div class="medium-12 columns">
     <h1>Welcome on GiftList!</h1>
     <img src="http://kickofjoy.com/wp-content/uploads/2014/02/surprise-gift.jpg">
-  </div>
-
-  <div class="medium-4 columns">
-  <h3>Search gifts by code</h3>
-  <p>Here you can search lists by code you get from your friend. You'll be able to choose gifts you want to buy.</p>
-  <%= form_tag({:controller => "welcome", :action => "search"}, method: :post) do %>
-       <%= text_field_tag :query, params[:query], {:placeholder=>"Search"}  %>
-       <%= submit_tag "Search" %>               
-  <% end %>
-  </form>
   </div>
 </div>
