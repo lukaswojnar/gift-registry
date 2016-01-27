@@ -11,7 +11,7 @@ class InvitationsController < ApplicationController
     if @user
       @invitation.invited_user_id = @user.id
     else
-      @invitation.invited_user_id = User.invite!(:email => email)
+      @invitation.invited_user_id = User.invite!(:email => email).id
     end
     @invitation.save
     redirect_to controller: 'lists', action: 'index'
