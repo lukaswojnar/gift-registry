@@ -11,50 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126170113) do
-
-  create_table "events", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.datetime "date"
-    t.text     "address"
-    t.integer  "list_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "events", ["list_id"], name: "index_events_on_list_id"
+ActiveRecord::Schema.define(version: 20160126165006) do
 
   create_table "gifts", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "link"
     t.integer  "price"
-    t.string   "assigned_to"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "list_id"
+    t.integer  "assigned_user_id"
   end
 
+  add_index "gifts", ["assigned_user_id"], name: "index_gifts_on_assigned_user_id"
   add_index "gifts", ["list_id"], name: "index_gifts_on_list_id"
 
   create_table "invitations", force: :cascade do |t|
-    t.string   "email"
-    t.boolean  "attend"
-    t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "inivted_user_id"
+    t.integer  "list_id"
   end
 
-  add_index "invitations", ["event_id"], name: "index_invitations_on_event_id"
+  add_index "invitations", ["inivted_user_id"], name: "index_invitations_on_inivted_user_id"
+  add_index "invitations", ["list_id"], name: "index_invitations_on_list_id"
 
   create_table "lists", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "share_code"
+    t.datetime "event_date"
+    t.text     "address"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "user_id"
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"
