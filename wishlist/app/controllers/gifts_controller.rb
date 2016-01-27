@@ -26,7 +26,6 @@ class GiftsController < ApplicationController
 
   def update
     @gift = Gift.find(params[:id])
-    authorize! :update, @gift
     if @gift.update_attributes(gift_params)
       redirect_to controller: 'gifts', action: 'index'
     else
@@ -37,13 +36,12 @@ class GiftsController < ApplicationController
   def destroy
     @gift = Gift.find(params[:id])
     @gift.destroy
-
     redirect_to controller: 'gifts', action: 'index'
   end
 
   private
      def gift_params
-       params.require(:gift).permit(:title, :description, :link, :price, :assigned_to)
+       params.require(:gift).permit(:title, :description, :link, :price)
      end
 
 end
