@@ -4,22 +4,4 @@
   </div>
 </div>
 
-<%= form_for @list do |f| %>
-  <div class="row">
-    <div class="small-12 columns">
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-12 columns">
-      <%= f.label :description %>
-      <%= f.text_field :description %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-12 columns">
-      <%= f.submit "Edit Your Wishlist" %>
-    </div>
-  </div>
-<% end %>
+<%= render :partial => 'form' %>

@@ -13,6 +13,18 @@
   </div>
   <div class="row">
     <div class="small-12 columns">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= f.label :event_date %>
+      <%= f.datetime_select :event_date %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
       <%= f.submit "Create Your Wishlist" %>
     </div>
   </div>

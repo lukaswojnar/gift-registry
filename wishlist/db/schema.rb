@@ -11,28 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160121123708) do
+ActiveRecord::Schema.define(version: 20160126165006) do
 
   create_table "gifts", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "link"
     t.integer  "price"
-    t.string   "assigned_to"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "list_id"
+    t.integer  "assigned_user_id"
+  end
+
+  add_index "gifts", ["assigned_user_id"], name: "index_gifts_on_assigned_user_id"
+  add_index "gifts", ["list_id"], name: "index_gifts_on_list_id"
+
+  create_table "invitations", force: :cascade do |t|
+    t.boolean  "status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "inivted_user_id"
     t.integer  "list_id"
   end
 
-  add_index "gifts", ["list_id"], name: "index_gifts_on_list_id"
+  add_index "invitations", ["inivted_user_id"], name: "index_invitations_on_inivted_user_id"
+  add_index "invitations", ["list_id"], name: "index_invitations_on_list_id"
 
   create_table "lists", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "share_code"
+    t.datetime "event_date"
+    t.text     "address"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "user_id"
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"

@@ -19,7 +19,6 @@
       <th>Price</th>
       <th>Edit</th>
       <th>Delete</th>
-      <th>Assignee</th>
     </tr>
   </thead>
   <tbody>
@@ -31,12 +30,6 @@
         <td><%= g.price %></td>
         <td><%= link_to 'Edit', edit_list_gift_path(@list, g) %></td>
         <td><%= link_to 'Destroy', list_gift_path(@list, g), method: :delete, data: { confirm: "Destroy?"} %></td>
-        <td>
-          <%= form_for [@list, g] do |f| %>
-            <%= f.text_field :assigned_to, value: g.assigned_to %>
-            <%= f.submit 'Save' %>
-          <% end %>
-        </td>
       </tr>
     <% end %>
   </tbody>
