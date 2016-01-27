@@ -22,7 +22,11 @@
           <td><%= l.event_date %></td>
           <td><%= link_to 'Edit', edit_list_path(l) %></td>
           <td><%= link_to 'Destroy', list_path(l), method: :delete, data: { confirm: "Destroy?"} %></td>
-          <td></td>
+          <td>
+            <% l.invitations.each do |i| %>
+              <%= i.user.email %><br>
+            <% end %>
+          </td>
         </tr>
       <% end %>
       </tbody>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126165006) do
+ActiveRecord::Schema.define(version: 20160127104238) do
 
   create_table "gifts", force: :cascade do |t|
     t.string   "title"
@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 20160126165006) do
     t.boolean  "status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "inivted_user_id"
+    t.integer  "invited_user_id"
     t.integer  "list_id"
   end
 
-  add_index "invitations", ["inivted_user_id"], name: "index_invitations_on_inivted_user_id"
+  add_index "invitations", ["invited_user_id"], name: "index_invitations_on_invited_user_id"
   add_index "invitations", ["list_id"], name: "index_invitations_on_list_id"
 
   create_table "lists", force: :cascade do |t|
@@ -67,9 +67,20 @@ ActiveRecord::Schema.define(version: 20160126165006) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
+    t.integer  "invitations_count",      default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count"
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
