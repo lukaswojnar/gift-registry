@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
          :confirmable
 
   has_many :lists, dependent: :destroy
-  has_many :invitations, foreign_key: 'invited_user'
+  has_many :invitations, foreign_key: 'invited_user_id'
   has_many :gifts, foreign_key: 'assigned_user'
 end

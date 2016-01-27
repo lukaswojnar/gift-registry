@@ -16,4 +16,9 @@ class InvitationsController < ApplicationController
     @invitation.save
     redirect_to controller: 'lists', action: 'index'
   end
+
+  def my_invivations
+    @invitations = current_user.invitations
+  end
+
 end
