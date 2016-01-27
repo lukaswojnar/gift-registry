@@ -10,6 +10,7 @@
         <th>Event date</th>
         <th>Edit</th>
         <th>Delete</th>
+        <th>Invite new user</th>
         <th>Invited users</th>
       </tr>
       </thead>
@@ -24,9 +25,10 @@
           <td><%= link_to 'Destroy', list_path(l), method: :delete, data: { confirm: "Destroy?"} %></td>
           <td>
             <% l.invitations.each do |i| %>
-              <%= i.user.email %><br>
+              <%= i.user.email %> - <% if i.status == true %>(declined)<% elsif i.status == false %>(accepted)<% else %>(no information)<% end %><br>
             <% end %>
           </td>
+          <td><%= link_to 'Invite', new_list_invitation_path(l) %></td>
         </tr>
       <% end %>
       </tbody>

@@ -1,0 +1,7 @@
+<% @invitations.each do |i| %>
+    <%= i.list.title %><br>
+    <%= i.list.event_date %><br>
+    <%= link_to 'Accept', accept_invitation_path(i.id) %>
+    <%= link_to 'Decline', decline_invitation_path(i.id) %>
+    <hr>
+<% end %>

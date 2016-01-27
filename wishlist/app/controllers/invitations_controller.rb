@@ -17,8 +17,24 @@ class InvitationsController < ApplicationController
     redirect_to controller: 'lists', action: 'index'
   end
 
-  def my_invivations
+  def my_invitations
     @invitations = current_user.invitations
+  end
+
+  def accept_invitation
+    @invitation = Invitation.find params[:invitation_id]
+    @invitation.status = 1
+    @invitation.save
+    flash[:notice] = "You accepted the invitation."
+    redirect_to(:back)
+  end
+
+  def decline_invitation
+    @invitation = Invitation.find params[:invitation_id]
+    @invitation.status = 0
+    @invitation.save
+    flash[:notice] = "You declined the invitation."
+    redirect_to(:back)
   end
 
 end
