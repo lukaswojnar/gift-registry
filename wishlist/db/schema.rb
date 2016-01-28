@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128092945) do
+ActiveRecord::Schema.define(version: 20160128094109) do
 
   create_table "gifts", force: :cascade do |t|
     t.string   "title"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20160128092945) do
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.string   "address"
+    t.datetime "event_date"
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"
