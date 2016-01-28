@@ -5,6 +5,7 @@ class InvitationsController < ApplicationController
 
   def create
     email = params[:email]
+
     @user = User.find_by email: email
     @invitation = Invitation.new
     @invitation.list_id = params[:list_id]
