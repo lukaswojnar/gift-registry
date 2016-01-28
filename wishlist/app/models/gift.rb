@@ -1,4 +1,6 @@
 class Gift < ActiveRecord::Base
+   validates :title, presence: true, length: { minimum: 3, maximum: 500,
+                                               too_long: "%{count} characters is the maximum allowed" }
    belongs_to :list
 
    before_validation :smart_add_url_protocol
