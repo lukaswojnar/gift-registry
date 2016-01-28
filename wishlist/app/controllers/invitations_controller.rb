@@ -1,11 +1,12 @@
 class InvitationsController < ApplicationController
+  before_filter :validate_email, :only => [:create]
+
   def new
     @list = List.find params[:list_id]
   end
 
   def create
     email = params[:email]
-
     @user = User.find_by email: email
     @invitation = Invitation.new
     @invitation.list_id = params[:list_id]
@@ -36,6 +37,12 @@ class InvitationsController < ApplicationController
     @invitation.save
     flash[:notice] = "You declined the invitation."
     redirect_to(:back)
+  end
+
+  def validate_email
+    if params[:email].nil?
+      redirect_to new_list_invitation_path, notice: 'Enter some email!'
+    end
   end
 
 end
