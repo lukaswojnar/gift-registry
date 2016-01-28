@@ -16,6 +16,7 @@ class InvitationsController < ApplicationController
       @invitation.invited_user_id = User.invite!(:email => email).id
     end
     @invitation.save
+    flash[:success] = "Your invitation has been sent."
     redirect_to controller: 'lists', action: 'index'
   end
 

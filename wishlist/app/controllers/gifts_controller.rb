@@ -11,7 +11,7 @@ class GiftsController < ApplicationController
     @gift.list_id = params[:list_id]
     @gift.save
     redirect_to controller: 'gifts', action: 'index'
-    flash[:notice] = "Gift successfully created"
+    flash[:notice] = "Gift successfully created."
   end
 
   def index
@@ -29,7 +29,7 @@ class GiftsController < ApplicationController
     @gift = Gift.find(params[:id])
     if @gift.update_attributes(gift_params)
       redirect_to controller: 'gifts', action: 'index'
-      flash[:notice] = "Gift successfully saved"
+      flash[:notice] = "Gift successfully saved."
     else
       render 'edit'
     end
@@ -39,7 +39,7 @@ class GiftsController < ApplicationController
     @gift = Gift.find(params[:id])
     @gift.destroy
     redirect_to controller: 'gifts', action: 'index'
-    flash[:success] = "Gift successfully deleted"
+    flash[:success] = "Gift successfully deleted."
   end
 
   private

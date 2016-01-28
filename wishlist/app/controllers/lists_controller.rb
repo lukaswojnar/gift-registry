@@ -22,7 +22,7 @@ class ListsController < ApplicationController
     @list.user_id = current_user.id
 
     if @list.save
-      flash[:success] = "List has been created"
+      flash[:success] = "List has been created."
       redirect_to controller: 'lists', action: 'index'
     else
       render 'new'
@@ -33,7 +33,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
 
     if @list.update(list_params)
-      flash[:success] = "List has been saved"
+      flash[:success] = "List has been saved."
       redirect_to @list
     else
       render 'edit'
@@ -44,7 +44,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     @list.destroy
     redirect_to lists_path
-    flash[:notice] = "List has been deleted"
+    flash[:notice] = "List has been deleted."
   end
 
   private
