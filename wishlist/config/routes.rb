@@ -11,5 +11,8 @@ Rails.application.routes.draw do
   get '/accept-invitation/:invitation_id' => 'invitations#accept_invitation', :as => :accept_invitation
   get '/decline-invitation/:invitation_id' => 'invitations#decline_invitation', :as => :decline_invitation
 
+  get '/lists/:id/detail' => 'lists#detail'
+  get '/take-gift/:id' => 'gifts#take_gift', :as => :take_gift
+
   devise_for :users#, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 end

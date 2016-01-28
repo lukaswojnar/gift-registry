@@ -42,6 +42,19 @@ class GiftsController < ApplicationController
     flash[:success] = "Gift successfully deleted."
   end
 
+  def take_gift
+    @gift = Gift.find(params[:id])
+    if @gift.assigned_user_id.blank?
+      @gift.assigned_user_id = current_user.id
+      @gift.save
+      flash[:success] = "You will buy this gift."
+      redirect_to(:back)
+    else
+      flash[:notice] = "Gift is taken by another user."
+      redirect_to(:back)
+    end
+  end
+
   private
      def gift_params
        params.require(:gift).permit(:title, :description, :link, :price)

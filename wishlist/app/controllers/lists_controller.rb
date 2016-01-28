@@ -47,6 +47,15 @@ class ListsController < ApplicationController
     flash[:notice] = "List has been deleted."
   end
 
+  def detail
+    @list = List.find(params[:id])
+    @gifts = Gift.where(list_id: @list.id)
+    @my_invitation = Invitation.find_by(invited_user_id: current_user.id, list_id: @list.id)
+    @participants = User.joins(:invitations).where(invitations: {status: true, list_id: @list.id})
+    @nonparticipants = User.joins(:invitations).where(invitations: {status: false, list_id: @list.id})
+    @invited_only = User.joins(:invitations).where(invitations: {status: nil, list_id: @list.id})
+  end
+
   private
   def list_params
     params.require(:list).permit(:title, :description, :address, :event_date)

@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="small-12 columns">
+    <h1><%= @list.title %></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="medium-5 columns">
+    <h2>Information about event</h2>
+    <strong>Description:</strong> <%= @list.description %><br>
+    <strong>Date:</strong> <%= @list.event_date %><br>
+    <strong>Address:</strong> <%= @list.address %><br>
+    <%= link_to 'Accept invitation', accept_invitation_path(@my_invitation.id) %><br>
+    <%= link_to 'Decline invitation', decline_invitation_path(@my_invitation.id) %>
+  </div>
+  <div class="medium-7 columns">
+    <h2>Information about participants</h2>
+    <h3>Who is coming:</h3>
+      <% @participants.each do |p|  %>
+        <%= p.email %><br>
+      <% end %>
+    <hr>
+    <h3>Who is not coming:</h3>
+    <% @nonparticipants.each do |n|  %>
+      <%= n.email %><br>
+    <% end %>
+    <hr>
+    <h3>Who doesn't know:</h3>
+    <% @invited_only.each do |o|  %>
+      <%= o.email %><br>
+    <% end %>
+    <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Gifts</h1>
+    <% @gifts.each do |g| %>
+      <div class="row">
+        <div class="small-8 columns">
+          <%= g.title %>, <%= g.description %>, <%= g.link %>, <%= g.price %>
+        </div>
+        <div class="small-4 columns">
+          <% if g.assigned_user_id.blank? %>
+            <%= link_to 'Buy this gift', take_gift_path(g.id) %>
+          <% elsif g.assigned_user_id == current_user.id %>
+            You will buy this gift.
+          <% else %>
+            Someone else is going to buy this gift.
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
