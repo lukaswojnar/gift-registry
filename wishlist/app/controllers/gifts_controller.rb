@@ -11,6 +11,7 @@ class GiftsController < ApplicationController
     @gift.list_id = params[:list_id]
     @gift.save
     redirect_to controller: 'gifts', action: 'index'
+    flash[:notice] = "Gift successfully created"
   end
 
   def index
@@ -37,6 +38,7 @@ class GiftsController < ApplicationController
     @gift = Gift.find(params[:id])
     @gift.destroy
     redirect_to controller: 'gifts', action: 'index'
+    flash[:notice] = "Gift successfully deleted"
   end
 
   private

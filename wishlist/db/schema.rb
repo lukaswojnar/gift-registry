@@ -18,13 +18,12 @@ ActiveRecord::Schema.define(version: 20160127104238) do
     t.text     "description"
     t.string   "link"
     t.integer  "price"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.string   "assigned_to"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "list_id"
-    t.integer  "assigned_user_id"
   end
 
-  add_index "gifts", ["assigned_user_id"], name: "index_gifts_on_assigned_user_id"
   add_index "gifts", ["list_id"], name: "index_gifts_on_list_id"
 
   create_table "invitations", force: :cascade do |t|
@@ -41,11 +40,10 @@ ActiveRecord::Schema.define(version: 20160127104238) do
   create_table "lists", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "event_date"
-    t.text     "address"
-    t.integer  "user_id"
+    t.string   "share_code"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"
