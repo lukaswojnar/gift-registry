@@ -24,7 +24,7 @@ class InvitationsController < ApplicationController
     @invitations = current_user.invitations
   end
 
-  def accept_invitation
+  def accept_invitation_on_event
     @invitation = Invitation.find params[:invitation_id]
     @invitation.status = 1
     @invitation.save
@@ -32,7 +32,7 @@ class InvitationsController < ApplicationController
     redirect_to(:back)
   end
 
-  def decline_invitation
+  def decline_invitation_on_event
     @invitation = Invitation.find params[:invitation_id]
     @invitation.status = 0
     @invitation.save

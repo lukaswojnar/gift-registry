@@ -10,8 +10,8 @@
     <strong>Description:</strong> <%= @list.description %><br>
     <strong>Date:</strong> <%= @list.event_date %><br>
     <strong>Address:</strong> <%= @list.address %><br>
-    <%= link_to 'Accept invitation', accept_invitation_path(@my_invitation.id) %><br>
-    <%= link_to 'Decline invitation', decline_invitation_path(@my_invitation.id) %>
+    <%= link_to 'Accept invitation', accept_invitation_on_event_path(@my_invitation.id) %><br>
+    <%= link_to 'Decline invitation', decline_invitation_on_event_path(@my_invitation.id) %>
   </div>
   <div class="medium-7 columns">
     <h2>Information about participants</h2>

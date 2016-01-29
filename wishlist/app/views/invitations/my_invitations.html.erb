@@ -1,7 +1,13 @@
 <% @invitations.each do |i| %>
-    <%= i.list.title %><br>
-    <%= i.list.event_date %><br>
-    <%= link_to 'Accept', accept_invitation_path(i.id) %>
-    <%= link_to 'Decline', decline_invitation_path(i.id) %>
-    <hr>
+    <div class="row">
+      <div class="small-8 columns">
+        You have been invited to event <%= link_to i.list.title, list_detail_path(i.list.id) %>.<br>
+        Event date is<%= i.list.event_date %>.<br>
+        <%= link_to 'Click for more information', list_detail_path(i.list.id) %>
+      </div>
+      <div class="small-4 columns">
+        <%= link_to 'Accept', accept_invitation_on_event_path(i.id), {class: 'button success'} %>
+        <%= link_to 'Decline', accept_invitation_on_event_path(i.id), {class: 'button alert' }  %>
+      </div>
+    </div>
 <% end %>
