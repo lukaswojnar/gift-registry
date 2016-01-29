@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129113659) do
+ActiveRecord::Schema.define(version: 20160129131857) do
 
   create_table "gifts", force: :cascade do |t|
     t.string   "title"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 20160129113659) do
 
   add_index "notifications", ["list_id"], name: "index_notifications_on_list_id"
   add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
+
+  create_table "permissions", force: :cascade do |t|
+    t.string   "role"
+    t.integer  "user_id"
+    t.integer  "list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "permissions", ["list_id"], name: "index_permissions_on_list_id"
+  add_index "permissions", ["user_id"], name: "index_permissions_on_user_id"
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
