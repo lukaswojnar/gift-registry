@@ -1,0 +1,21 @@
+<div class="small-12 columns">
+  <h1>Your notifications</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>List</th>
+      <th>When</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @notifications.each do |notf| %>
+      <tr>
+        <td><%= List.find(notf.list_id).title %></td>
+        <td><%= notf.date %></td>
+        <td><%= link_to 'Destroy', list_gift_path(@list, g), method: :delete, data: { confirm: "Are you sure you want to delete this notification?"} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  </div>

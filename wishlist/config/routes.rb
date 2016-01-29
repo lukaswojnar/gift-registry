@@ -16,4 +16,9 @@ Rails.application.routes.draw do
   get '/remove-assigned-gift/:id' => 'gifts#remove_assigned_gift', :as => :remove_assigned_gift
 
   devise_for :users#, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
+
+  # routes for notifications
+  post '/notifications/create' => 'notifications#create'
+  get '/my-notifications' => 'notifications#my_notifications'
+
 end
