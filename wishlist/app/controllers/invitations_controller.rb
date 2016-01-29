@@ -11,12 +11,18 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new
     @invitation.list_id = params[:list_id]
     if @user
-      @invitation.invited_user_id = @user.id
+      if @user.id == current_user.id
+        flash[:notice] = "It is not possible to send invitation to yourself."
+      else
+        @invitation.invited_user_id = @user.id
+        @invitation.save
+        flash[:success] = "Your invitation has been sent." 
+      end
     else
       @invitation.invited_user_id = User.invite!(:email => email).id
+      @invitation.save
+      flash[:success] = "Your invitation has been sent."
     end
-    @invitation.save
-    flash[:success] = "Your invitation has been sent."
     redirect_to controller: 'lists', action: 'index'
   end
 
