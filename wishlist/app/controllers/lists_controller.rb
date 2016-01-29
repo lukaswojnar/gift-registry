@@ -23,6 +23,12 @@ class ListsController < ApplicationController
 
     if @list.save
       flash[:success] = "List has been created."
+      @permission = Permission.new
+      @permission.created_at= DateTime.now
+      @permission.user_id = current_user.id
+      @permission.list_id = @list.id
+      @permission.role = 0
+      @permission.save
       redirect_to controller: 'lists', action: 'index'
     else
       render 'new'
