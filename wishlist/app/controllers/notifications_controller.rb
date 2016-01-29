@@ -38,4 +38,19 @@ class NotificationsController < ApplicationController
 
   # do we need Update? user just can create and delete notification.
 
+  #class method for notifiyng users?
+  def self.notify
+    @all_notifications = Notification.all
+
+    @all_notifications.each do |notf|
+      time_diff = (Time.zone.now - notf.date).to_i / 1.day
+      if time_diff==0
+        @user = User.find_by notf.user
+        #send notification to user, because today is The Shopping day!
+      end
+    end
+
+
+  end
+
 end

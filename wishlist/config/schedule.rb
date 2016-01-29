@@ -21,5 +21,5 @@
 
 
 every 1.day, :at => '7:30 am' do
-  runner "MyModel.task_to_run_at_four_thirty_in_the_morning"
+  runner "notifications_controller.notify"
 end
