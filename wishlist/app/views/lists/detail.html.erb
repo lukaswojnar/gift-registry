@@ -10,8 +10,11 @@
     <strong>Description:</strong> <%= @list.description %><br>
     <strong>Date:</strong> <%= @list.event_date %><br>
     <strong>Address:</strong> <%= @list.address %><br>
-    <%= link_to 'Accept invitation', accept_invitation_on_event_path(@my_invitation.id) %><br>
-    <%= link_to 'Decline invitation', decline_invitation_on_event_path(@my_invitation.id) %>
+    <hr>
+    <% if @list.user.id != current_user.id %>
+    <%= link_to 'Accept', accept_invitation_on_event_path(@my_invitation.id), {class: 'button success'} %>
+    <%= link_to 'Decline', decline_invitation_on_event_path(@my_invitation.id), {class: 'button alert' }  %>
+    <% end %>
   </div>
   <div class="medium-7 columns">
     <h2>Information about participants</h2>
@@ -33,24 +36,32 @@
   </div>
 </div>
 
+<% if @list.user.id != current_user.id %>
 <div class="row">
   <div class="small-12 columns">
     <h1>Gifts</h1>
     <% @gifts.each do |g| %>
       <div class="row">
         <div class="small-8 columns">
-          <%= g.title %>, <%= g.description %>, <%= g.link %>, <%= g.price %>
+          User <strong><%= g.list.user.email %></strong> wants to buy <strong><%= g.title %></strong> (<%= g.description %>). You can find more information about this gift on <%= link_to g.link, g.link %>. The price of this gift is <strong><%= g.price %></strong>.
         </div>
         <div class="small-4 columns">
-          <% if g.assigned_user_id.blank? %>
-            <%= link_to 'Buy this gift', take_gift_path(g.id) %>
-          <% elsif g.assigned_user_id == current_user.id %>
-            You will buy this gift.
+          <% if @my_invitation.status %>
+            <% if g.assigned_user_id.blank? %>
+              <%= link_to "I'll buy it!", take_gift_path(g.id), {class: 'button expand'} %>
+            <% elsif g.assigned_user_id == current_user.id %>
+              <%= link_to "I don't want to buy this gift.", remove_assigned_gift_path(g.id), {class: 'button expand alert'} %>
+              <p>This gift is assigned to you.</p>
+            <% else %>
+              Someone else is going to buy this gift.
+            <% end %>
           <% else %>
-            Someone else is going to buy this gift.
+            You need accept the invitation if you want to buy this gift.
           <% end %>
         </div>
       </div>
+      <hr>  
     <% end %>
   </div>
 </div>
+<% end %>

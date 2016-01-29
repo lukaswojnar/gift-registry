@@ -55,6 +55,19 @@ class GiftsController < ApplicationController
     end
   end
 
+  def remove_assigned_gift
+    @gift = Gift.find(params[:id])
+    if @gift.assigned_user_id = current_user.id
+      @gift.assigned_user_id = nil
+      @gift.save
+      flash[:success] = "Gift is not assigned to you. Other users can buy it."
+      redirect_to(:back)
+    else
+      flash[:notice] = "Something went wrongs."
+      redirect_to(:back)
+    end
+  end
+
   private
      def gift_params
        params.require(:gift).permit(:title, :description, :link, :price)
