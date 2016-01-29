@@ -17,7 +17,7 @@
       <tbody>
       <% @lists.each do |l| %>
         <tr>
-          <td><%= link_to l.title, list_path(l.id) %></td>
+          <td><%= link_to l.title, list_path(l.id) %> (click to manage gifts)</td>
           <td><%= l.description %></td>
           <td><%= l.address %></td>
           <td><%= l.event_date %></td>
@@ -25,7 +25,7 @@
           <td><%= link_to 'Destroy', list_path(l), method: :delete, data: { confirm: "Destroy?"} %></td>
           <td>
             <% l.invitations.each do |i| %>
-              <%= i.user.email %> - <% if i.status == true %>(declined)<% elsif i.status == false %>(accepted)<% else %>(no information)<% end %><br>
+              <%= i.user.email %> - <% if i.status == true %>(accepted)<% elsif i.status == false %>(declined)<% else %>(no information)<% end %><br>
               <% end %>
           </td>
           <td><%= link_to 'Invite', new_list_invitation_path(l) %></td>
