@@ -22,6 +22,10 @@ class GiftsController < ApplicationController
 
   def edit
     @gift = Gift.find(params[:id])
+    if @gift.assigned_user_id
+      redirect_to(:back)
+      flash[:notice] = "Some user has chosen this gift. It is not possible to edit it now."
+    end
     @list = List.find params[:list_id]
   end
 
