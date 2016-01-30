@@ -2,8 +2,7 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @notifications = current_user.notifications
-    @lists = current_user.lists
+    @notifications = Notification.where(:user_id => current_user.id)
   end
 
   def new
@@ -12,7 +11,7 @@ class NotificationsController < ApplicationController
   end
 
   def create
-    @list = List.find params[:list_id]
+    @list = List.find params[:notification][:list_id]
     @notification = Notification.new(notification_params)
     @notification.user_id = current_user.id
     @notification.list_id = @list.id
@@ -28,7 +27,7 @@ class NotificationsController < ApplicationController
   def destroy
     @notification = Notification.find(params[:id])
     @notification.destroy
-    redirect_to lists_path
+    redirect_to(:back)
     flash[:notice] = "Notification has been deleted."
   end
 
@@ -46,8 +45,8 @@ class NotificationsController < ApplicationController
     @all_notifications.each do |notf|
       time_diff = (Time.zone.now - notf.date).to_i / 1.day
       if time_diff==0
-        @user = User.find_by notf.user
-        #send notification to user, because today is The Shopping day!
+        @user = User.find notf.user
+        NotificationMailer.notification_email(@user).deliver!
       end
     end
 

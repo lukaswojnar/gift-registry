@@ -6,4 +6,5 @@ class List < ActiveRecord::Base
   belongs_to :user
   has_many :gifts, dependent: :destroy
   has_many :invitations, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 end

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :lists, dependent: :destroy
   has_many :invitations, foreign_key: 'invited_user_id'
   has_many :gifts, foreign_key: 'assigned_user'
+  has_many :notifications, dependent: :destroy
 
 
   # User::Roles

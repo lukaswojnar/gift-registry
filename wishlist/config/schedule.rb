@@ -19,7 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
+set :output, "log/cron_log.log"
 
 every 1.day, :at => '7:30 am' do
-  runner "notifications_controller.notify"
+  runner "NotificationsController.notify"
+  rake "send_mail"
 end

@@ -17,6 +17,7 @@
       <%= f.datetime_select :date %>
     </div>
   </div>
+  <%= f.hidden_field :list_id, :value => @list.id %>
   <div class="row">
     <div class="small-12 columns">
       <%= f.submit "Create notification", { class: 'button' } %>
