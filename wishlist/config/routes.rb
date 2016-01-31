@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/decline-invitation-on-event/:invitation_id' => 'invitations#decline_invitation_on_event', :as => :decline_invitation_on_event
 
   get '/lists/:id/detail' => 'lists#detail', :as => :list_detail
+  get '/gifts_to_buy' => 'gifts#gifts_to_buy', :as => :gifts_to_buy
   get '/take-gift/:id' => 'gifts#take_gift', :as => :take_gift
   get '/remove-assigned-gift/:id' => 'gifts#remove_assigned_gift', :as => :remove_assigned_gift
 

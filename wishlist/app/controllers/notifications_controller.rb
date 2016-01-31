@@ -27,7 +27,7 @@ class NotificationsController < ApplicationController
     else
       if @notification.save
         flash[:success] = "Notification has been created."
-        redirect_to controller: 'lists', action: 'index'
+        redirect_to(:my_notifications)
       else
         render 'new'
       end

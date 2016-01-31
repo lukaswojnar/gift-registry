@@ -13,7 +13,7 @@
     <hr>
     <% if @list.user.id != current_user.id %>
       <%= link_to 'Accept', accept_invitation_on_event_path(@my_invitation.id), {class: 'button success'} %>
-      <%= link_to 'Decline', decline_invitation_on_event_path(@my_invitation.id), {class: 'button alert' }  %>
+      <%= link_to 'Decline', decline_invitation_on_event_path(@my_invitation.id), {class: 'button alert', data: { confirm: "Do you really want to decline your invitation? All gifts you have chosen to buy will be avaible to other users." }} %>
     <% end %>
     <% if @my_invitation.status == true %>
       <%= link_to 'Set notification', create_notification_path(@list.id), {class: 'button alert' }  %>

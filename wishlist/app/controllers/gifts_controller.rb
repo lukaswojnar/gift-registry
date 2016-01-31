@@ -29,6 +29,10 @@ class GiftsController < ApplicationController
     @list = List.find params[:list_id]
   end
 
+  def gifts_to_buy
+    @gifts = Gift.where(assigned_user_id: current_user.id)
+  end
+
   def update
     @gift = Gift.find(params[:id])
     if @gift.update_attributes(gift_params)

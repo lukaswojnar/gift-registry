@@ -21,14 +21,14 @@
           <td><%= l.description %></td>
           <td><%= l.address %></td>
           <td><%= l.event_date %></td>
-          <td><%= link_to 'Edit', edit_list_path(l) %></td>
-          <td><%= link_to 'Destroy', list_path(l), method: :delete, data: { confirm: "Destroy?"} %></td>
+          <td><%= link_to 'Edit', edit_list_path(l), class: 'button expand notice' %></td>
+          <td><%= link_to 'Destroy', list_path(l), { method: :delete, class: 'button expand alert', data: { confirm: "Destroy?"} } %></td>
           <td>
             <% l.invitations.each do |i| %>
               <%= i.user.email %> - <% if i.status == true %>(accepted)<% elsif i.status == false %>(declined)<% else %>(no information)<% end %><br>
               <% end %>
           </td>
-          <td><%= link_to 'Invite', new_list_invitation_path(l) %></td>
+          <td><%= link_to 'Invite', new_list_invitation_path(l), class: 'button expand notice' %></td>
         </tr>
       <% end %>
       </tbody>

@@ -1,0 +1,29 @@
+<div class="row">
+<div class="small-12 columns">
+  <h1>Gifts you should buy</h1>
+  <table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Link</th>
+      <th>Price</th>
+      <th>List (event)</th>
+      <th>Remove from list</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @gifts.each do |g| %>
+      <tr>
+        <td><%= g.title %></td>
+        <td><%= g.description %></td>
+        <td><%= link_to g.link, g.link %></td>
+        <td><%= g.price %></td>
+        <td><%= link_to g.list.title, list_detail_path(g.list.id) %> (click for detail)</td>
+        <td><%= link_to "I don't want to buy this gift.", remove_assigned_gift_path(g.id), {class: 'button expand alert'} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>
+</div>
