@@ -1,9 +1,10 @@
 class NotificationMailer < ApplicationMailer
   default from: 'notifications@example.com'
   
-  def notification_email(user)
+  def notification_email(user, notf)
     @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    @notification = notf
+    @gifts = Gift.where(list_id: @notification.list.id, assigned_user_id: @user.id)
+    mail(to: @user.email, subject: 'Your event will be soon!')
   end
 end

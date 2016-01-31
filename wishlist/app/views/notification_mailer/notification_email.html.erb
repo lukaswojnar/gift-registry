@@ -4,14 +4,16 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, </h1>
+    <h1>Event <%= @notification.list.title %> will be soon!</h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is: .<br>
+      We are sending this e-mail because you set the notification in Wishlist.
     </p>
     <p>
-      To login to the site, just follow this link: 
+      We want to notify you because the event <%= @notification.list.title %> will be on <%= @notification.list.event_date %>. <%= link_to 'Click for more information about event.', list_detail_path(@notification.list_id) %>.
     </p>
-    <p>Thanks for joining and have a great day!</p>
+      <h2>You should buy these gifts:</h2>
+      <% @gifts.each do |g| %>
+        Title: <%= g.title %>, price: <%= g.price %>, link: <%= g.link %><br>
+      <% end %>
   </body>
 </html>

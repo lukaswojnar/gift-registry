@@ -56,7 +56,7 @@ class NotificationsController < ApplicationController
       time_diff = (Time.zone.now - notf.date).to_i / 1.day
       if time_diff==0
         @user = User.find notf.user
-        NotificationMailer.notification_email(@user).deliver!
+        NotificationMailer.notification_email(@user, notf).deliver!
       end
     end
 
