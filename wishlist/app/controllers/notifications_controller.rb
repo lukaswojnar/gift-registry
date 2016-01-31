@@ -7,6 +7,11 @@ class NotificationsController < ApplicationController
 
   def new
     @list = List.find params[:list_id]
+    @invitation = Invitation.find_by(list_id: @list.id, invited_user_id: current_user.id)
+    if @invitation.status == false 
+      flash[:notice] = "You have to accept the invitation when you want to create notification."
+      redirect_to(:my_invitations)
+    end
     @notification = Notification.new
   end
 

@@ -12,10 +12,12 @@
     <strong>Address:</strong> <%= @list.address %><br>
     <hr>
     <% if @list.user.id != current_user.id %>
-    <%= link_to 'Accept', accept_invitation_on_event_path(@my_invitation.id), {class: 'button success'} %>
-    <%= link_to 'Decline', decline_invitation_on_event_path(@my_invitation.id), {class: 'button alert' }  %>
+      <%= link_to 'Accept', accept_invitation_on_event_path(@my_invitation.id), {class: 'button success'} %>
+      <%= link_to 'Decline', decline_invitation_on_event_path(@my_invitation.id), {class: 'button alert' }  %>
     <% end %>
-    <%= link_to 'Set notification', create_notification_path(@list.id), {class: 'button alert' }  %>
+    <% if @my_invitation.status == true %>
+      <%= link_to 'Set notification', create_notification_path(@list.id), {class: 'button alert' }  %>
+    <% end %>
   </div>
   <div class="medium-7 columns">
     <h2>Information about participants</h2>
