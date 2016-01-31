@@ -16,11 +16,16 @@ class NotificationsController < ApplicationController
     @notification.user_id = current_user.id
     @notification.list_id = @list.id
 
-    if @notification.save
-      flash[:success] = "Notification has been created."
-      redirect_to controller: 'lists', action: 'index'
+    if @notification.date > @list.event_date
+      flash[:notice] = "Notification cannot be set after date of event."
+      redirect_to(:back)
     else
-      render 'new'
+      if @notification.save
+        flash[:success] = "Notification has been created."
+        redirect_to controller: 'lists', action: 'index'
+      else
+        render 'new'
+      end
     end
   end
 
