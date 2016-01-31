@@ -41,6 +41,7 @@ class InvitationsController < ApplicationController
   def decline_invitation_on_event
     @invitation = Invitation.find params[:invitation_id]
     @invitation.status = 0
+    self.remove_assigned_gifts(@invitation)
     @invitation.save
     flash[:notice] = "You declined the invitation."
     redirect_to(:back)
@@ -49,6 +50,15 @@ class InvitationsController < ApplicationController
   def validate_email
     if params[:email].nil?
       redirect_to new_list_invitation_path, notice: 'Enter some email!'
+    end
+  end
+
+  def remove_assigned_gifts(invitation)
+    @invitation = invitation
+    @gifts = Gift.where(list_id: @invitation.list_id, assigned_user_id: current_user.id)
+    @gifts.each do |g|
+      g.assigned_user_id = nil
+      g.save
     end
   end
 
