@@ -36,7 +36,6 @@ class ListsController < ApplicationController
 
   def update
     @list = List.find(params[:id])
-
     if @list.update(list_params)
       flash[:success] = "List has been saved."
       redirect_to @list
