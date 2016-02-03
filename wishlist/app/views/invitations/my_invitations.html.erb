@@ -7,7 +7,16 @@
       </div>
       <div class="small-4 columns">
         <%= link_to 'Accept', accept_invitation_on_event_path(i.id), {class: 'button success'} %>
-        <%= link_to 'Decline', accept_invitation_on_event_path(i.id), {class: 'button alert' }  %>
+        <%= link_to 'Decline', decline_invitation_on_event_path(i.id), {class: 'button alert', data: { confirm: "Do you really want to decline your invitation? All gifts you have chosen to buy will be avaible to other users." }} %>
+        <p>
+          <% if i.status == true %>
+            You accepted the invitation.
+          <% elsif i.status == false %>
+            You declined the invitation.
+          <% else %>
+            You neither accepted neihter declined the invitation.
+          <% end %>
+        </p>
       </div>
     </div>
 <% end %>
