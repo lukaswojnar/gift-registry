@@ -7,6 +7,7 @@ class InvitationsController < ApplicationController
 
   def create
     email = params[:email]
+    succ = false
     @user = User.find_by email: email
     @invitation = Invitation.new
     @invitation.list_id = params[:list_id]
@@ -17,11 +18,21 @@ class InvitationsController < ApplicationController
         @invitation.invited_user_id = @user.id
         @invitation.save
         flash[:success] = "Your invitation has been sent." 
+        succ = true
       end
     else
       @invitation.invited_user_id = User.invite!(:email => email).id
       @invitation.save
       flash[:success] = "Your invitation has been sent."
+      succ = true
+    end
+    if succ
+      @permission = Permission.new
+      @permission.created_at= DateTime.now
+      @permission.user_id = @user.id
+      @permission.list_id = @invitation.list_id
+      @permission.role = 1
+      @permission.save
     end
     redirect_to controller: 'lists', action: 'index'
   end
@@ -32,10 +43,16 @@ class InvitationsController < ApplicationController
 
   def accept_invitation_on_event
     @invitation = Invitation.find params[:invitation_id]
-    @invitation.status = 1
-    @invitation.save
-    flash[:notice] = "You accepted the invitation."
-    redirect_to(:back)
+    @list = List.find(@invitation.list_id)
+    if list_participant?(@list)
+      @invitation.status = 1
+      @invitation.save
+      flash[:notice] = "You accepted the invitation."
+      redirect_to(:back)
+    else
+      redirect_to controller: 'lists', action: 'index'
+      flash[:notice] = "You have to be participant on this event if you want accept invitation."
+    end
   end
 
   def decline_invitation_on_event

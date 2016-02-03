@@ -7,30 +7,40 @@ class NotificationsController < ApplicationController
 
   def new
     @list = List.find params[:list_id]
-    @invitation = Invitation.find_by(list_id: @list.id, invited_user_id: current_user.id)
-    if @invitation.status == false 
-      flash[:notice] = "You have to accept the invitation when you want to create notification."
-      redirect_to(:my_invitations)
+    if list_participant?(@list)
+      @invitation = Invitation.find_by(list_id: @list.id, invited_user_id: current_user.id)
+      if @invitation.status == false 
+        flash[:notice] = "You have to accept the invitation when you want to create notification."
+        redirect_to(:my_invitations)
+      end
+      @notification = Notification.new
+    else
+      redirect_to controller: 'lists', action: 'index'
+      flash[:notice] = "You have to be participant on this event if you want to create notification."
     end
-    @notification = Notification.new
   end
 
   def create
     @list = List.find params[:notification][:list_id]
-    @notification = Notification.new(notification_params)
-    @notification.user_id = current_user.id
-    @notification.list_id = @list.id
+    if list_participant?(@list)
+      @notification = Notification.new(notification_params)
+      @notification.user_id = current_user.id
+      @notification.list_id = @list.id
 
-    if @notification.date > @list.event_date
-      flash[:notice] = "Notification cannot be set after date of event."
-      redirect_to(:back)
-    else
-      if @notification.save
-        flash[:success] = "Notification has been created."
-        redirect_to(:my_notifications)
+      if @notification.date > @list.event_date
+        flash[:notice] = "Notification cannot be set after date of event."
+        redirect_to(:back)
       else
-        render 'new'
+        if @notification.save
+          flash[:success] = "Notification has been created."
+          redirect_to(:my_notifications)
+        else
+          render 'new'
+        end
       end
+    else
+      redirect_to controller: 'lists', action: 'index'
+      flash[:notice] = "You have to be participant on this event if you want to create notification."
     end
   end
 

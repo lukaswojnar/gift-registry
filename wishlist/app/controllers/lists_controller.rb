@@ -15,6 +15,10 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
+    if !list_owner?(@list)
+      redirect_to controller: 'lists', action: 'index'
+      flash[:notice] = "You do not have permisson edit this list."
+    end
   end
 
   def create
@@ -36,19 +40,29 @@ class ListsController < ApplicationController
 
   def update
     @list = List.find(params[:id])
-    if @list.update(list_params)
-      flash[:success] = "List has been saved."
-      redirect_to @list
+    if list_owner?(@list)
+      if @list.update(list_params)
+        flash[:success] = "List has been saved."
+        redirect_to @list
+      else
+        redirect_to controller: 'lists', action: 'index'
+      end
     else
-      render 'edit'
+      redirect_to controller: 'lists', action: 'index'
+      flash[:notice] = "You do not have permisson edit this list."
     end
   end
 
   def destroy
     @list = List.find(params[:id])
-    @list.destroy
-    redirect_to lists_path
-    flash[:notice] = "List has been deleted."
+    if list_owner?(@list)
+      @list.destroy
+      redirect_to lists_path
+      flash[:success] = "List has been deleted."
+    else
+      redirect_to lists_path
+      flash[:notice] = "You don't have permission to destroy this list."
+    end
   end
 
   def detail
