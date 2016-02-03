@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20160129135734) do
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"
 
   create_table "notifications", force: :cascade do |t|
-    t.date "date"
+    t.date     "date"
     t.integer  "user_id"
     t.integer  "list_id"
     t.datetime "created_at", null: false
