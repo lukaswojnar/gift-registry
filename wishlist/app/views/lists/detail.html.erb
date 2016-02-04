@@ -1,10 +1,14 @@
+<% if @list.event_date < DateTime.now %>
+  <%= render partial: "shared/passed" %>
+<% end %>
+
 <div class="row">
   <div class="small-12 columns">
     <h1><%= @list.title %></h1>
   </div>
 </div>
 
-<div class="row">
+<div class="row <% if @list.event_date < DateTime.now %>passed-row<% end %>">
   <div class="medium-5 columns">
     <h2>Information about event</h2>
     <strong>Description:</strong> <%= @list.description %><br>
@@ -25,7 +29,7 @@
       </p>
       <hr>
     <% end %>
-    <% if @my_invitation.status == true %>
+    <% if @my_invitation && @my_invitation.status == true %>
       <%= link_to 'Set notification', create_notification_path(@list.id), {class: 'button alert' }  %>
     <% end %>
   </div>
@@ -54,7 +58,7 @@
   <div class="small-12 columns">
     <h1>Gifts</h1>
     <% @gifts.each do |g| %>
-      <div class="row">
+      <div class="row <% if @list.event_date < DateTime.now %>passed-row<% end %>">
         <div class="small-8 columns">
           User <strong><%= g.list.user.email %></strong> wants to buy <strong><%= g.title %></strong> (<%= g.description %>). You can find more information about this gift on <%= link_to g.link, g.link %>. The price of this gift is <strong><%= g.price %></strong>.
         </div>

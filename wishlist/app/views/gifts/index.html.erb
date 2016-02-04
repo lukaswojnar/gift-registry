@@ -1,3 +1,7 @@
+<% if @list.event_date < DateTime.now %>
+  <%= render partial: "shared/passed" %>
+<% end %>
+
 <div class="row">
 <div class="small-12 columns">
   <a href="#" data-reveal-id="myModal" class="button">Add Gift</a>

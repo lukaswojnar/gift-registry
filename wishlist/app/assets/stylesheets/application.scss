@@ -45,6 +45,45 @@ table {
   width: 100%;
 }
 
+.passed {
+  table{
+    tr {
+      td {
+        font-size: 75%;
+        color: #ccc;
+        a {
+          color: #666;
+          &.button {
+            color: #fff;
+            font-size: 75%;
+            &.notice {
+              background: #666;
+            }
+          }
+        }
+      }
+      th {
+        font-size: 75%;
+      }
+    }
+  }
+  h2 {
+    font-size: 100%;
+  }
+}
+
+.passed-row {
+  a {
+    color: #666;
+    &.button {
+      color: #fff;
+      background: #666;
+    }
+  }
+}
+
+
+
 #error_explanation {
   width: 450px;
   border: 2px solid red;
