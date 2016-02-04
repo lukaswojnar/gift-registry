@@ -9,11 +9,15 @@
       We are sending this e-mail because you set the notification in Wishlist.
     </p>
     <p>
-      We want to notify you because the event <%= @notification.list.title %> will be on <%= @notification.list.event_date %>. <%= link_to 'Click for more information about event.', list_detail_path(@notification.list_id) %>.
+      We want to notify you because the event <%= @notification.list.title %> will be on <%= @notification.list.event_date %>. <%= link_to 'Click for more information about event.', list_detail_url(@notification.list_id) %>.
     </p>
-      <h2>You should buy these gifts:</h2>
-      <% @gifts.each do |g| %>
-        Title: <%= g.title %>, price: <%= g.price %>, link: <%= g.link %><br>
+      <% if @gifts %>
+        <h2>You should buy these gifts:</h2>
+        <% @gifts.each do |g| %>
+          Title: <%= g.title %>, price: <%= g.price %>, link: <%= g.link %><br>
+        <% end %>
+      <% else %>
+        <p>You haven't chosen any gift yet. You can choose some gift from <%= link_to 'list', list_detail_url(@notification.list_id) %>.</p>
       <% end %>
   </body>
 </html>
