@@ -16,12 +16,14 @@ class InvitationsController < ApplicationController
         flash[:notice] = "It is not possible to send invitation to yourself."
       else
         @invitation.invited_user_id = @user.id
+        uid = @user.id
         @invitation.save
         flash[:success] = "Your invitation has been sent." 
         succ = true
       end
     else
-      @invitation.invited_user_id = User.invite!(:email => email).id
+      uid = User.invite!(:email => email).id
+      @invitation.invited_user_id = uid
       @invitation.save
       flash[:success] = "Your invitation has been sent."
       succ = true
@@ -29,7 +31,7 @@ class InvitationsController < ApplicationController
     if succ
       @permission = Permission.new
       @permission.created_at= DateTime.now
-      @permission.user_id = @user.id
+      @permission.user_id = uid
       @permission.list_id = @invitation.list_id
       @permission.role = 1
       @permission.save
