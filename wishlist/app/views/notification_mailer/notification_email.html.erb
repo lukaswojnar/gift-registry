@@ -11,7 +11,7 @@
     <p>
       We want to notify you because the event <%= @notification.list.title %> will be on <%= @notification.list.event_date %>. <%= link_to 'Click for more information about event.', list_detail_url(@notification.list_id) %>.
     </p>
-      <% if @gifts %>
+      <% if !@gifts.blank? %>
         <h2>You should buy these gifts:</h2>
         <% @gifts.each do |g| %>
           Title: <%= g.title %>, price: <%= g.price %>, link: <%= g.link %><br>
