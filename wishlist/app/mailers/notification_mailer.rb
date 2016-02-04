@@ -1,5 +1,5 @@
 class NotificationMailer < ApplicationMailer
-  default from: 'notifications@example.com'
+  default from: 'notifications@gift-registry.herokuapp.com'
   
   def notification_email(user, notf)
     @user = user
