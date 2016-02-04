@@ -63,11 +63,11 @@ class NotificationsController < ApplicationController
     @all_notifications = Notification.all
 
     @all_notifications.each do |notf|
-      time_diff = (Time.zone.now - notf.date).to_i / 1.day
-      if time_diff==0
+      #time_diff = (Time.zone.now - notf.date).to_i / 1.day
+      #f time_diff==0
         @user = User.find notf.user
         NotificationMailer.notification_email(@user, notf).deliver!
-      end
+      #end
     end
 
 
