@@ -1,7 +1,6 @@
 == README
 
-Wishlist is an application where users can manage gifts on specific event.
-You just need to create your account. Then you can create an event and add gifts you want from another users.
-An e-mail will be send to all invited user. They need to sign up if they want to work with your list.
-Invited user can choose which gift he or she will buy for you. They can also let you know if they come to this event.
-All users can set a notification. An e-mail will be send to their e-mail (with details about event and with list of all gifts they should buy).
+Wishlist je aplikace sloužící pro správu událostí, na kterých se budou rozdávat dárky (svatby, narozeniny).
+Uživatel, který chce aplikaci používat, si musí vytvořit účet. Poté založí událost a pozve ostatní účastníky prostřednictvím e-mailu (neregistrovaným uživatelům dojde do e-mailové schránky pozvánka s žádostí o registraci do aplikace). Správce události pak může vytvořit seznam dárků, které chce, aby mu ostatní koupili. Účastníci si pak dárky rozeberou a přinesou na událost. Každý pozvaný uživatel si může vytvořit notifikaci - v nastavený den mu na e-mail přijde upozornění, že se blíží daná událost a nalezne zde i seznam dárků, které má zakoupit.
+
+Aplikace je dostupná na http://gift-registry.herokuapp.com.
