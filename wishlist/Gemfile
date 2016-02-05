@@ -38,6 +38,10 @@ gem 'rolify'
 gem 'whenever', require: false
 gem 'validates_timeliness', '~> 4.0'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-datetimepicker'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

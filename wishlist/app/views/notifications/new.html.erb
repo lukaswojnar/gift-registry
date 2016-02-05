@@ -27,7 +27,7 @@
   <div class="row">
     <div class="small-12 columns">
       <%= f.label :date %>
-      <%= f.date_select :date %>
+      <%= f.text_field :date, { class: 'datepicker' } %>
     </div>
   </div>
   <%= f.hidden_field :list_id, :value => @list.id %>
@@ -37,3 +37,9 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    $('.datepicker').datetimepicker({
+        timepicker: false
+      });
+</script>

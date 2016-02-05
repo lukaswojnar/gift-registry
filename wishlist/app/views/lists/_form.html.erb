@@ -32,7 +32,7 @@
   <div class="row">
     <div class="small-12 columns">
       <%= f.label :event_date %>
-      <%= f.datetime_select :event_date %>
+      <%= f.text_field :event_date, { class: 'datetimepicker'} %>
     </div>
   </div>
   <div class="row">
@@ -41,3 +41,7 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    $('.datetimepicker').datetimepicker();
+</script>
