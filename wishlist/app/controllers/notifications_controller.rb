@@ -66,6 +66,7 @@ class NotificationsController < ApplicationController
       if notf.date.today?
         @user = User.find notf.user
         NotificationMailer.notification_email(@user, notf).deliver!
+        notf.destroy
       end
     end
 
