@@ -201,7 +201,7 @@ DEPENDENCIES
   devise_invitable
   foundation-rails
   jbuilder (~> 2.0)
-  jquery-rails
+  jquery-rails (~> 4.0.5)
   letter_opener
   pg
   pry-rails
