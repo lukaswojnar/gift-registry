@@ -18,7 +18,7 @@ class InvitationsController < ApplicationController
         @invitation.invited_user_id = @user.id
         uid = @user.id
         @invitation.save
-        NotificationMailer.invitation_email_registered_user(@user, @invitation)
+        NotificationMailer.invitation_email_registered_user(@user, @invitation).deliver!
         flash[:success] = "Your invitation has been sent." 
         succ = true
       end
