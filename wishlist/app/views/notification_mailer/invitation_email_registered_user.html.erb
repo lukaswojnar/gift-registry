@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You have been invited on event <%= @invitation.title %>!</h1>
+    <p>
+      We are sending this e-mail because you have been invited to an event. Please check <%= link_to 'event detail page',list_detail_path(@invitation.list.id) %>.
+    </p>
+  </body>
+</html>
