@@ -2,7 +2,7 @@
     <div class="row <% if i.list.event_date < DateTime.now %>passed-row<% end %>">
       <div class="small-8 columns">
         You have been invited to event <%= link_to i.list.title, list_detail_path(i.list.id) %>.<br>
-        Event date is<%= i.list.event_date %>.<br>
+        Event date is <%= i.list.event_date %>.<br>
         <%= link_to 'Click for more information', list_detail_path(i.list.id) %><br>
         <% if i.list.event_date < DateTime.now %><strong>This event already passed.</strong><% end %>
       </div>
