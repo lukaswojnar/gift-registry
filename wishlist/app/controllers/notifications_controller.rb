@@ -63,7 +63,7 @@ class NotificationsController < ApplicationController
     @all_notifications = Notification.all
 
     @all_notifications.each do |notf|
-      if notf.today?
+      if notf.date.today?
         @user = User.find notf.user
         NotificationMailer.notification_email(@user, notf).deliver!
       end
