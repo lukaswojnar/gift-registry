@@ -38,6 +38,7 @@
   </div>
 </div>
 
+<% if @lists_passed.count > 0 %>
 <div class="row passed">
   <div class="small-12 columns">
   <h2>Passed events</h2>
@@ -74,4 +75,4 @@
       </tbody>
     </table>
   </div>
-</div>
+</div><% end %>
