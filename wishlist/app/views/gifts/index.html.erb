@@ -4,16 +4,13 @@
 
 <div class="row">
 <div class="small-12 columns">
-  <a href="#" data-reveal-id="myModal" class="button">Add Gift</a>
-  <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-    <%= render template: 'gifts/new' %>  
-    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  <h1>Gifts in list <%= @list.title %></h1>
   </div>
 </div>
-</div>
-<div class="row">
-<div class="small-12 columns">
-  <h1>Gifts in list <%= @list.title %></h1>
+
+  <div class="row">
+    <div class="small-12 columns">
+  <%= link_to 'Add Gift', new_list_gift_path, class: 'button expand' %>
   <p>These are gifts you would like to get from event's participants.</p>
   <table>
   <thead>
