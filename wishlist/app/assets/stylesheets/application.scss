@@ -28,12 +28,18 @@ $green              : #468847;
 $red                : #b94a48;
 
 
+.status {
+  &.accepted { color: $green; }
+  &.rejected { color: $red; }
+}
+
  body {
   background: url('giftly.png') repeat;
  }
 
 h1 {
-  color: $blue;
+  color: $darkblue;
+  text-align: center;
 }
 
 .main-content {
@@ -50,6 +56,14 @@ h1 {
 table {
   width: 100%;
 }
+
+.margin-top {
+  margin-top: 2em !important;
+  .button {
+    margin-bottom: 0.5rem; /* was 1.25rem */
+  }
+}
+
 
 .passed {
   table{

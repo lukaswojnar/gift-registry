@@ -1,7 +1,16 @@
 <div class="row">
   <div class="small-12 columns">
-  <h1>Wish lists</h1>
-  <%= link_to 'Create a new List', new_list_path %>
+  <h1>My WishLists</h1>
+    <div class="row margin-top">
+      <div class="column small-12 medium-6">
+        <p>You can create new and manage your existing WishLists on this page.</p>
+      </div>
+      <div class="column small-12 medium-6 text-right">
+        <%= link_to 'Create a new WishList', new_list_path, class: 'button' %>
+      </div>
+    </div>
+
+    <% if @lists_active.count > 0 %>
     <table>
       <caption>Upcoming events</caption>
       <thead>
@@ -10,37 +19,38 @@
         <th>Description</th>
         <th>Address</th>
         <th>Event date</th>
-        <th>Invited users</th>
-        <th>Invite new user</th>
-        <th>Edit Event</th>
+        <th>Invited guests</th>
+        <th>Invite new guest</th>
+        <th>Manage Gifts</th>
         <th>Delete</th>
       </tr>
       </thead>
       <tbody>
       <% @lists_active.each do |l| %>
         <tr <% if l.event_date < DateTime.now %>class="passed"<% end %>>
-          <td><%= link_to l.title, list_path(l.id) %> (click to manage gifts)</td>
+          <td><%= link_to l.title, edit_list_path(l) %></td>
           <td><%= l.description %></td>
           <td><%= l.address %></td>
           <td><% if l.event_date < DateTime.now %><br><strong>This event already passed.</strong> (<%= l.event_date.strftime("%d. %m. %Y, %H:%M") %>)<% else %><%= l.event_date.strftime("%d. %m. %Y, %H:%M") %><br>(in <%= distance_of_time_in_words(l.event_date, Time.current) %>)<% end %></td>
           <td>
-            <% l.invitations.each do |i| %>
-              <%= i.user.email %> - <% if i.status == true %>(accepted)<% elsif i.status == false %>(declined)<% else %>(no information)<% end %><br>
+            <% if l.invitations.count > 0 %>
+              <ul class="no-bullet">
+              <% l.invitations.each do |i| %>
+                <li class="status <%= (i.status == true)?'accepted':((i.status == false)?'declined':'') %>" title="<%= i.user.email %>: <%= (i.status == true)?'accepted':((i.status == false)?'declined':'pending') %>"><%= i.user.email %></li>
+              <% end %>
+              </ul>
             <% end %>
           </td>
           <td><%= link_to 'Invite', new_list_invitation_path(l), class: 'button expand notice' %></td>
-          <td><%= link_to 'Edit', edit_list_path(l), class: 'button expand notice' %></td>
+          <td><%= link_to 'Gifts', list_path(l.id), class: 'button expand notice' %></td>
           <td><%= link_to 'Delete', list_path(l), { method: :delete, class: 'button expand alert', data: { confirm: "Do you really want to delete event: #{l.title}?"} } %></td>
         </tr>
       <% end %>
       </tbody>
     </table>
-  </div>
-</div>
+    <% end %>
 
-<% if @lists_passed.count > 0 %>
-<div class="row passed">
-  <div class="small-12 columns">
+  <% if @lists_passed.count > 0 %>
     <table>
       <caption>Past events</caption>
       <thead>
@@ -74,6 +84,6 @@
       <% end %>
       </tbody>
     </table>
+  <% end %>
   </div>
 </div>
-<% end %>
