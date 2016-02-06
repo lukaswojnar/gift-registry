@@ -115,7 +115,7 @@ class GiftsController < ApplicationController
 
   private
      def gift_params
-       params.require(:gift).permit(:title, :description, :link, :price)
+       params.require(:gift).permit(:title, :description, :link, :price, :image)
      end
 
 end

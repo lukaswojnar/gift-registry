@@ -3,6 +3,9 @@ class Gift < ActiveRecord::Base
                                                too_long: "%{count} characters is the maximum allowed" }
    belongs_to :list
 
+   has_attached_file :image, styles: { medium: "800x800>", thumb: "220x220#" }, default_url: "/images/:style/gift-image-missing.png"
+   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
    before_validation :smart_add_url_protocol
 
    protected
