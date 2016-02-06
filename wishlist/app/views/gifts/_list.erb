@@ -1,0 +1,49 @@
+<table>
+  <caption>Gifts registry</caption>
+  <thead>
+  <tr>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Link</th>
+    <th>Price</th>
+    <% if @admin %>
+    <th>Edit</th>
+    <th>Delete</th>
+    <% else %>
+    <th>Pick</th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% @gifts.each do |g| %>
+    <tr>
+      <td><% if g.image.url(:small_thumb) %><%= link_to image_tag(g.image.url(:small_thumb)), g.image.url(:original) %><% else %><%= image_tag(g.image.url(:small_thumb)) %><% end %></td>
+      <td><%= g.title %></td>
+      <td><%= g.description %></td>
+      <td><%= link_to g.link, g.link %></td>
+      <td><%= g.price %>&nbsp;Kč</td>
+      <% if @admin %>
+      <td>
+      <% if g.assigned_user_id %>
+        Already chosen. Not possible to edit.
+      <% else %>
+        <%= link_to 'Edit', edit_list_gift_path(@list, g), class: 'button notice' %>
+      <% end %>
+      </td>
+      <td><%= link_to 'Delete', list_gift_path(@list, g), { method: :delete, class: 'button alert', data: { confirm: "Do you really want to delete gift #{g.title}?"} } %></td>
+      <% else %>
+      <td>
+        <% if g.assigned_user_id.blank? %>
+          <%= link_to "I'll buy it!", take_gift_path(g.id), {class: 'button'} %>
+        <% elsif g.assigned_user_id == current_user.id %>
+          <%= link_to "I don't want to buy this gift.", remove_assigned_gift_path(g.id), {class: 'button alert'} %>
+        <% else %>
+          <span class="button disabled">This gift is already taken.</span>
+        <% end %>
+      </td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

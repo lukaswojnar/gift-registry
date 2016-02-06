@@ -1,0 +1,41 @@
+<ul class="tabs" data-tabs id="gifts-list">
+  <li class="tabs-title is-active"><a href="#gallery" aria-selected="true">Gallery</a></li>
+  <li class="tabs-title"><a href="#list">List</a></li>
+</ul>
+<div class="tabs-content" data-tabs-content="gifts-list">
+  <div class="tabs-panel is-active" id="gallery">
+    <div class="row small-up-1 medium-up-2 large-up-4" data-equalizer="gifts" data-equalize-by-row="true">
+      <% @gifts.each do |g| %>
+        <div class="column small-12 medium-3">
+          <div class="callout clearfix">
+            <div data-equalizer-watch="gifts">
+              <%= link_to image_tag(g.image.url(:thumb)), g.image.url(:large) %>
+              <h3><%= g.title %></h3>
+              <p>
+                <% if g.description %>
+                <%= g.description %><br>
+                <% end %>
+                <% if g.link %>
+                  <%= link_to 'more info', g.link, target: '_blank' %><br>
+                <% end %>
+                <% if g.price %>
+                  <%= g.price %>&nbsp;Kč<br>
+                <% end %>
+              </p>
+            </div>
+            <% if g.assigned_user_id.blank? %>
+              <%= link_to "I'll buy it!", take_gift_path(g.id), {class: 'button expanded'} %>
+            <% elsif g.assigned_user_id == current_user.id %>
+              <%= link_to "I don't want to buy this gift.", remove_assigned_gift_path(g.id), {class: 'button expanded alert'} %>
+            <% else %>
+              <span class="button expanded disabled">This gift is already taken.</span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="tabs-panel" id="list">
+    <%= render :partial => 'gifts/list' %>
+  </div>
+</div>

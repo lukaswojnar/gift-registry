@@ -1,50 +1,15 @@
-<% if @list.event_date < DateTime.now %>
-  <%= render partial: "shared/passed" %>
-<% end %>
-
-<div class="row">
-<div class="small-12 columns">
-  <h1>Gifts registry for <%= @list.title %></h1>
-  </div>
-</div>
-
+<div class="row column">
   <h1>Gift registry for <%= @list.title %></h1>
-  <div class="row">
-    <div class="small-12 columns">
-  <%= link_to 'Add Gift', new_list_gift_path, class: 'button expand' %>
-  <p>These are gifts you would like to get from event's participants.</p>
-  <table>
-    <caption>Gift registry</caption>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Link</th>
-      <th>Price</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @gifts.each do |g| %>
-      <tr>
-        <td><%= image_tag(g.image.url(:small_thumb)) %></td>
-        <td><%= g.title %></td>
-        <td><%= g.description %></td>
-        <td><%= link_to g.link, g.link %></td>
-        <td><%= g.price %></td>
-        <td>
-          <% if g.assigned_user_id %>
-            Some user has chosen this gift. It is not possible to edit it now.
-          <% else %>
-            <%= link_to 'Edit', edit_list_gift_path(@list, g), class: 'button expand notice' %>
-          <% end %>
-        </td>
-        <td><%= link_to 'Delete', list_gift_path(@list, g), { method: :delete, class: 'button expand alert', data: { confirm: "Do you really want to delete gift #{g.title}?"} } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  </table>
-</div>
+  <div class="row margin-top">
+    <div class="column small-12 medium-6">
+      <p>These are gifts you would like to get from event's participants.</p>
+    </div>
+    <div class="column small-12 medium-6 text-center medium-text-right">
+      <%= link_to 'Add Gift', new_list_gift_path, class: 'button' %>
+    </div>
+  </div>
+
+  <% @admin = true %>
+  <%= render :partial => 'gifts/list' %>
+
 </div>

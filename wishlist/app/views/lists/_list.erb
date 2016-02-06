@@ -1,0 +1,41 @@
+<table>
+  <caption><%= @past?'Past events':'Upcoming events' %></caption>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Address</th>
+    <th>Event date</th>
+    <th>Invited guests</th>
+    <% unless @past %>
+    <th>Invite new guest</th>
+    <% end %>
+    <th>Manage Gifts</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @list.each do |l| %>
+    <tr>
+      <td><%= link_to l.title, edit_list_path(l) %></td>
+      <td><%= l.description %></td>
+      <td><%= l.address %></td>
+      <td><%= l.event_date.strftime("%d. %m. %Y, %H:%M") %><% if l.event_date < DateTime.now %> (passed)<% else %><br>(in <%= distance_of_time_in_words(l.event_date, Time.current) %>)<% end %></td>
+      <td>
+        <% if l.invitations.count > 0 %>
+          <ul class="no-bullet">
+            <% l.invitations.each do |i| %>
+              <li class="status <%= (i.status == true)?'accepted':((i.status == false)?'declined':'') %>" title="<%= i.user.email %>: <%= (i.status == true)?'accepted':((i.status == false)?'declined':'pending') %>"><%= i.user.email %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </td>
+      <% unless @past %>
+      <td><%= link_to 'Invite', new_list_invitation_path(l), class: 'button expand notice' %></td>
+      <% end %>
+      <td><%= link_to "Gifts (#{l.gifts.count})", list_path(l.id), class: 'button expand notice' %></td>
+      <td><%= link_to 'Delete', list_path(l), { method: :delete, class: 'button expand alert', data: { confirm: "Do you really want to delete event: #{l.title}?"} } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

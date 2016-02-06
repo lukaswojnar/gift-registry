@@ -1,84 +1,67 @@
-<% if @list.event_date < DateTime.now %>
-  <%= render partial: "shared/passed" %>
-<% end %>
+<div class="row columns">
 
-<div class="row">
-  <div class="small-12 columns">
-    <h1><%= @list.title %></h1>
+  <% if @list.event_date < DateTime.now %>
+    <%= render partial: "shared/passed" %>
+  <% end %>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <h1><%= @list.title %></h1>
+    </div>
   </div>
-</div>
 
-<div class="row <% if @list.event_date < DateTime.now %>passed-row<% end %>">
-  <div class="medium-5 columns">
-    <h2>Information about event</h2>
-    <strong>Description:</strong> <%= @list.description %><br>
-    <strong>Date:</strong> <%= @list.event_date %><br>
-    <strong>Address:</strong> <%= @list.address %><br>
-    <hr>
-    <% if @list.user.id != current_user.id %>
-      <%= link_to 'Accept', accept_invitation_on_event_path(@my_invitation.id), {class: 'button success'} %>
-      <%= link_to 'Decline', decline_invitation_on_event_path(@my_invitation.id), {class: 'button alert', data: { confirm: "Do you really want to decline your invitation? All gifts you have chosen to buy will be avaible to other users." }} %>
-      <p>
-        <% if @my_invitation.status == true %>
-          You accepted the invitation.
-        <% elsif @my_invitation.status == false %>
-          You declined the invitation.
-        <% else %>
-          You neither accepted neihter declined the invitation.
-        <% end %>
-      </p>
+  <div class="row <% if @list.event_date < DateTime.now %>passed-row<% end %>">
+    <div class="medium-5 columns">
+      <h2>Information about event</h2>
+      <strong>Description:</strong> <%= @list.description %><br>
+      <strong>Date:</strong> <%= @list.event_date %><br>
+      <strong>Address:</strong> <%= @list.address %><br>
       <hr>
-    <% end %>
-    <% if @my_invitation && @my_invitation.status == true %>
-      <%= link_to 'Set notification', create_notification_path(@list.id), {class: 'button alert' }  %>
-    <% end %>
-  </div>
-  <div class="medium-7 columns">
-    <h2>Information about participants</h2>
-    <h3>Who is coming:</h3>
-      <% @participants.each do |p|  %>
-        <%= p.email %><br>
-      <% end %>
-    <hr>
-    <h3>Who is not coming:</h3>
-    <% @nonparticipants.each do |n|  %>
-      <%= n.email %><br>
-    <% end %>
-    <hr>
-    <h3>Who doesn't know:</h3>
-    <% @invited_only.each do |o|  %>
-      <%= o.email %><br>
-    <% end %>
-    <hr>
-  </div>
-</div>
-
-<% if @list.user.id != current_user.id %>
-<div class="row">
-  <div class="small-12 columns">
-    <h1>Gifts</h1>
-    <% @gifts.each do |g| %>
-      <div class="row <% if @list.event_date < DateTime.now %>passed-row<% end %>">
-        <div class="small-8 columns">
-          User <strong><%= g.list.user.email %></strong> wants to buy <strong><%= g.title %></strong> (<%= g.description %>). You can find more information about this gift on <%= link_to g.link, g.link %>. The price of this gift is <strong><%= g.price %></strong>.
-        </div>
-        <div class="small-4 columns">
-          <% if @my_invitation.status %>
-            <% if g.assigned_user_id.blank? %>
-              <%= link_to "I'll buy it!", take_gift_path(g.id), {class: 'button expand'} %>
-            <% elsif g.assigned_user_id == current_user.id %>
-              <%= link_to "I don't want to buy this gift.", remove_assigned_gift_path(g.id), {class: 'button expand alert'} %>
-              <p>This gift is assigned to you.</p>
-            <% else %>
-              Someone else is going to buy this gift.
-            <% end %>
+      <% if @list.user.id != current_user.id %>
+        <%= link_to 'Accept', accept_invitation_on_event_path(@my_invitation.id), {class: 'button success'} %>
+        <%= link_to 'Decline', decline_invitation_on_event_path(@my_invitation.id), {class: 'button alert', data: { confirm: "Do you really want to decline your invitation? All gifts you have chosen to buy will be avaible to other users." }} %>
+        <p>
+          <% if @my_invitation.status == true %>
+            You accepted the invitation.
+          <% elsif @my_invitation.status == false %>
+            You declined the invitation.
           <% else %>
-            You need accept the invitation if you want to buy this gift.
+            You neither accepted neihter declined the invitation.
           <% end %>
-        </div>
-      </div>
-      <hr>  
-    <% end %>
+        </p>
+        <hr>
+      <% end %>
+      <% if @my_invitation && @my_invitation.status == true %>
+        <%= link_to 'Set notification', create_notification_path(@list.id), {class: 'button alert' }  %>
+      <% end %>
+    </div>
+    <div class="medium-7 columns">
+      <h2>Information about participants</h2>
+      <h3>Who is coming:</h3>
+        <% @participants.each do |p|  %>
+          <%= p.email %><br>
+        <% end %>
+      <hr>
+      <h3>Who is not coming:</h3>
+      <% @nonparticipants.each do |n|  %>
+        <%= n.email %><br>
+      <% end %>
+      <hr>
+      <h3>Who doesn't know:</h3>
+      <% @invited_only.each do |o|  %>
+        <%= o.email %><br>
+      <% end %>
+      <hr>
+    </div>
   </div>
+
+  <h2 class="heading">Gifts registry</h2>
+  <% if @my_invitation.status %>
+    <p>Gifts the host (<%= @list.user.email %>) wants you to buy. Pick some!</p>
+    <% @admin = false %>
+    <%= render :partial => 'gifts/tabs' %>
+  <% else %>
+    <p>You need accept the event invitation if you want to see the gifts.</p>
+  <% end %>
+
 </div>
-<% end %>

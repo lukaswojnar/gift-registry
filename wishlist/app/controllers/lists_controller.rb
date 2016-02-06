@@ -2,8 +2,8 @@ class ListsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @lists_active = current_user.lists.where('event_date > ?', DateTime.now).order(event_date: :desc)
-    @lists_passed = current_user.lists.where('event_date < ?', DateTime.now).order(event_date: :desc)
+    @lists_future = current_user.lists.where('event_date > ?', DateTime.now).order(event_date: :desc)
+    @lists_past = current_user.lists.where('event_date < ?', DateTime.now).order(event_date: :desc)
   end
 
   def show
