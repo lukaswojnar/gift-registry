@@ -36,10 +36,10 @@
       <!-- Left Nav Section -->
       <ul class="left">
         <% if user_signed_in? %>
-          <li><%= link_to 'My lists', lists_path %></li>
-          <li><%= link_to 'My invitations', my_invitations_path %></li>
-          <li><%= link_to 'My notifications', my_notifications_path %></li>
-          <li><%= link_to 'Gifts to buy', gifts_to_buy_path %></li>
+          <li><%= nav_link 'My WishLists', lists_path %></li>
+          <li><%= nav_link 'My Invitations', my_invitations_path %></li>
+          <li><%= nav_link 'My Notifications', my_notifications_path %></li>
+          <li><%= nav_link 'Gifts to buy', gifts_to_buy_path %></li>
         <% end %>
       </ul>
     </section>

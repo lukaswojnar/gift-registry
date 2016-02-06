@@ -42,6 +42,12 @@ h1 {
   text-align: center;
 }
 
+.top-bar-section ul > li {
+  a:not(.button):hover, &.current a:not(.button) {  background-color: $darkblue !important;}
+}
+
+.top-bar-section li:not(.has-form) a:hover:not(.button)
+
 .main-content {
   margin-top: 20px;
   padding: 20px;
