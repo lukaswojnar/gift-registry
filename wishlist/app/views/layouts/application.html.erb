@@ -1,40 +1,23 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title><%= content_for?(:title) ? yield(:title) : "Wishlist" %></title>
-
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-  </head>
-
-  <body>
-
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name">
-        <h1><%= link_to 'WishList', root_path %></h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
-
-    <section class="top-bar-section">
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <% if user_signed_in? %>
-          <li><%= link_to 'Account (' + current_user.email + ')', edit_user_registration_path %></li>
-          <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
-        <% else %>
-          <li><%= link_to 'Account', new_user_session_path %></li>
-        <% end %>
-      </ul>
-
-      <!-- Left Nav Section -->
-      <ul class="left">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= content_for?(:title) ? yield(:title) : "WishList" %></title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<header class="text-center medium-text-left">
+  <div class="title-bar show-for-small-only" data-responsive-toggle="main-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle></button>
+    <div class="title-bar-title">Menu</div>
+  </div>
+  <nav class="top-bar" id="main-menu" data-topbar role="navigation">
+    <section class="top-bar-left">
+      <ul class="menu vertical medium-horizontal">
+        <li class="menu-text show-for-medium"><%= link_to 'WishList', root_path %></li>
         <% if user_signed_in? %>
           <li><%= nav_link 'My WishLists', lists_path %></li>
           <li><%= nav_link 'My Invitations', my_invitations_path %></li>
@@ -43,19 +26,30 @@
         <% end %>
       </ul>
     </section>
+    <section class="top-bar-right">
+      <ul class="menu vertical medium-horizontal">
+        <li class="menu-text show-for-small-only">User</li>
+        <% if user_signed_in? %>
+          <li><%= link_to 'Account (' + current_user.email + ')', edit_user_registration_path %></li>
+          <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+          <li><%= link_to 'Account', new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </section>
   </nav>
+</header>
 
-  <div class="flash" id="flash">
-    <% flash.each do |key, value| %>
-      <div  class="<%= key %>"><%= value %></div>
-    <% end %>
+<div class="flash" id="flash">
+  <% flash.each do |key, value| %>
+    <div  class="<%= key %>"><%= value %></div>
+  <% end %>
 
-  </div>
+</div>
 
-  <div class="main-content">
-    <%= yield %>
-  </div>
+<div class="main-content">
+  <%= yield %>
+</div>
 
-
-  </body>
+</body>
 </html>
