@@ -74,10 +74,10 @@ class GiftsController < ApplicationController
     if list_owner?(@list)
       @gift.destroy
       redirect_to controller: 'gifts', action: 'index'
-      flash[:success] = "Gift successfully deleted."
+      flash[:success] = 'Gift successfully deleted.'
     else
       redirect_to controller: 'lists', action: 'index'
-      flash[:notice] = "You do not have permisson destroy this gift."
+      flash[:notice] = 'You do not have permissons to delete this gift.'
     end
   end
 
