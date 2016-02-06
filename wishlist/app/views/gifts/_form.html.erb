@@ -37,6 +37,12 @@
   </div>
   <div class="row">
     <div class="small-12 columns">
+      <%= f.label :image %>
+      <%= f.file_field :image, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
         <%= f.submit "Save", { class: 'button' } %>
     </div>
   </div>
