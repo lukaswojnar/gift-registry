@@ -16,11 +16,16 @@
  *= require datetimepicker
 
  */
-$blue: #3299BB;
-$lightgrey: #E9E9E9;
-$darkgrey: #424242;
-$grey: #BCBCBC;
-$orange: #FF9900;
+
+$blue               : #3299BB;
+$darkblue           : #056686;
+$lightgrey          : #E9E9E9;
+$darkgrey           : #424242;
+$grey               : #BCBCBC;
+$orange             : #FF9900;
+
+$green              : #468847;
+$red                : #b94a48;
 
 
  body {
@@ -110,26 +115,28 @@ table {
   }
 }
 
-#flash > .warning {
-  color: #c09853;
-  background-color: #fcf8e3;
-  border-color: #fbeed5;
-}
+#flash {
+  > .warning {
+    color: #c09853;
+    background-color: #fcf8e3;
+    border-color: #fbeed5;
+  }
 
-#flash > .success {
-  color: #468847;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-}
+  > .success {
+    color: $green;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
 
-#flash > .error {
-  color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
-}
+  > .error {
+    color: $red;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+  }
 
-#flash > .notice {
-  color: #3a87ad;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
+  > .notice {
+    color: #3a87ad;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+  }
 }
