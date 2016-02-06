@@ -1,5 +1,8 @@
-<% @invitations.each do |i| %>
-    <div class="row <% if i.list.event_date < DateTime.now %>passed-row<% end %>">
+<div class="row columns">
+  <h1>My Invitations</h1>
+  <% if @invitations.count > 0 %>
+    <% @invitations.each do |i| %>
+    <div class="row margin-top<%= i.list.event_date < DateTime.now ? ' passed-row' : '' %>">
       <div class="small-8 columns">
         <h2><%= link_to i.list.title, list_detail_path(i.list.id) %></h2>
         Created by: <%= i.user.email %><br>
@@ -22,4 +25,8 @@
       </div>
       <hr>
     </div>
-<% end %>
+    <% end %>
+  <% else %>
+    <p>You have no Invitations.</p>
+  <% end %>
+</div>

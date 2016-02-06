@@ -40,7 +40,7 @@ class InvitationsController < ApplicationController
     redirect_to controller: 'lists', action: 'index'
   end
 
-  def my_invitations
+  def invitations
     @invitations = current_user.invitations
   end
 

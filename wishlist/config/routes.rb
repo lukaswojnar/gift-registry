@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :notifications
 
   post '/invitations/create' => 'invitations#create'
-  get '/my-invitations' => 'invitations#my_invitations'
+  get '/invitations' => 'invitations#invitations'
   get '/accept-invitation-on-event/:invitation_id' => 'invitations#accept_invitation_on_event', :as => :accept_invitation_on_event
   get '/decline-invitation-on-event/:invitation_id' => 'invitations#decline_invitation_on_event', :as => :decline_invitation_on_event
 
@@ -24,5 +24,4 @@ Rails.application.routes.draw do
   post '/notifications/create' => 'notifications#create'
   get '/my-notifications' => 'notifications#index'
   get '/notifications/create/:list_id' => 'notifications#new', :as => :create_notification
-
 end
