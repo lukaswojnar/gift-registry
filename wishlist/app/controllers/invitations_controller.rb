@@ -18,6 +18,12 @@ class InvitationsController < ApplicationController
     if @user
       if @user.id == current_user.id
         flash[:notice] = "It is not possible to send invitation to yourself."
+      elsif !@user.invitation_token.blank? && @user.invitation_accepted_at.blank?
+        uid = User.invite!(:email => email).id
+        @invitation.invited_user_id = uid
+        @invitation.save
+        flash[:success] = "Your invitation has been sent."
+        succ = true
       else
         @invitation.invited_user_id = @user.id
         uid = @user.id
@@ -43,7 +49,7 @@ class InvitationsController < ApplicationController
     end
     redirect_to controller: 'lists', action: 'index'
   end
-
+  
   def accept_invitation_on_event
     @invitation = Invitation.find params[:invitation_id]
     @list = List.find(@invitation.list_id)
