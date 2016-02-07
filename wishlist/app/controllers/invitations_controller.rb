@@ -1,6 +1,10 @@
 class InvitationsController < ApplicationController
   before_filter :validate_email, :only => [:create]
 
+  def index
+    @invitations = current_user.invitations
+  end
+
   def new
     @list = List.find params[:list_id]
   end
@@ -38,10 +42,6 @@ class InvitationsController < ApplicationController
       @permission.save
     end
     redirect_to controller: 'lists', action: 'index'
-  end
-
-  def invitations
-    @invitations = current_user.invitations
   end
 
   def accept_invitation_on_event
