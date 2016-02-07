@@ -1,6 +1,6 @@
-<div class="row">
-<div class="small-12 columns">
+<div class="row columns">
   <h1>My Notifications</h1>
+  <% if @notifications.count > 0 %>
   <p>These are all notification you have created.</p>
   <table>
     <thead>
@@ -12,13 +12,16 @@
     </thead>
     <tbody>
     <% @notifications.each do |notf| %>
+      <% @title = List.find(notf.list_id).title %>
       <tr>
-        <td><%= List.find(notf.list_id).title %></td>
+        <td><%= @title %></td>
         <td><%= notf.date %></td>
-        <td><%= link_to 'Destroy', notification_path(notf), { method: :delete, class: 'button expand alert', data: { confirm: "Are you sure?"} } %></td>
+        <td><%= link_to 'Delete', notification_path(notf), { method: :delete, class: 'button expand alert', data: { confirm: "Are you sure to delete notification for #{@title}?"} } %></td>
       </tr>
     <% end %>
     </tbody>
   </table>
-  </div>
-  </div>
+  <% else %>
+    <p>You have no Notifications set.<% if @invitations.count > 0 %><br>But you have <%= @invitations.count %> Invitations. You can set a Notification for each of these at <%= link_to 'My Invitations', invitations_path %>.<% end %></p>
+  <% end %>
+</div>
