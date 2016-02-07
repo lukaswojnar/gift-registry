@@ -49,7 +49,7 @@ class GiftsController < ApplicationController
   end
 
   def gifts_to_buy
-    @gifts = Gift.where(assigned_user_id: current_user.id)
+    @gifts = Gift.where(assigned_user_id: current_user.id).order(:list_id, :title)
   end
 
   def update

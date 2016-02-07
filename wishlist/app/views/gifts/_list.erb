@@ -2,6 +2,9 @@
   <caption>Gifts registry</caption>
   <thead>
   <tr>
+    <% if @multiple_lists %>
+    <th>WishList</th>
+    <% end %>
     <th>Image</th>
     <th>Title</th>
     <th>Description</th>
@@ -18,6 +21,9 @@
   <tbody>
   <% @gifts.each do |g| %>
     <tr>
+      <% if @multiple_lists %>
+      <td><%= link_to g.list.title, list_detail_path(g.list.id) %></td>
+      <% end %>
       <td><% if g.image.url(:small_thumb) %><%= link_to image_tag(g.image.url(:small_thumb)), g.image.url(:original) %><% else %><%= image_tag(g.image.url(:small_thumb)) %><% end %></td>
       <td><%= g.title %></td>
       <td><%= g.description %></td>
