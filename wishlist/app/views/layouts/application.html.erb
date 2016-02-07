@@ -31,7 +31,7 @@
         <li class="menu-text show-for-small-only">User</li>
         <% if user_signed_in? %>
         <%= nav_link 'Account (' + current_user.email + ')', edit_user_registration_path %>
-        <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path %></li>
         <% else %>
         <%= nav_link 'Account', new_user_session_path %>
         <% end %>
