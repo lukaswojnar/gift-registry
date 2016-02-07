@@ -370,7 +370,7 @@ $mediaobject-image-width-stacked: 100%;
 
 $menu-margin: 0;
 $menu-margin-nested: 1rem;
-$menu-item-padding: 0.7rem 1rem;
+$menu-item-padding: 1.2rem 1rem;
 $menu-icon-spacing: 0.25rem;
 $menu-expand-max: 6;
 
@@ -542,7 +542,7 @@ $tooltip-radius: $global-radius;
 // 35. Top Bar
 // -----------
 
-$topbar-padding: 0.5rem;
-$topbar-background: $light-gray;
-$topbar-title-spacing: 1rem;
+$topbar-padding: 0; /* was 0.5rem */
+$topbar-background: $blue;
+$topbar-title-spacing: 0rem;
 $topbar-input-width: 200px;

@@ -1,35 +1,33 @@
-@import "foundation_and_overrides";
-
+// === COLORS ===
 $blue               : #3299BB;
 $darkblue           : #056686;
 $lightgrey          : #E9E9E9;
 $darkgrey           : #424242;
 $grey               : #BCBCBC;
 $orange             : #FF9900;
-
 $green              : #468847;
 $red                : #b94a48;
 
+// Import must be specified only after basic colors are set. This way I can use colors in Foundation settings.
+@import "foundation_and_overrides";
 
-.status {
-  &.accepted { color: $green; }
-  &.rejected { color: $red; }
+body {
+  background: url('giftly.png') repeat;
 }
 
- body {
-  background: url('giftly.png') repeat;
- }
-
-h1 {
+h1, .heading {
   color: $darkblue;
   text-align: center;
 }
 
-.top-bar-section ul > li {
-  a:not(.button):hover, &.current a:not(.button) {  background-color: $darkblue !important;}
+.menu {
+  a, .menu-text {color: $white}
+  .current a {background-color: $darkblue}
+  @include breakpoint(medium) {
+    // There is no :hover on mobile so use these only on medium-up
+    a:hover {background-color: $darkblue}
+  }
 }
-
-.top-bar-section li:not(.has-form) a:hover:not(.button)
 
 .main-content {
   margin-top: 20px;
@@ -91,8 +89,6 @@ table {
   }
 }
 
-
-
 #error_explanation {
   width: 450px;
   border: 2px solid red;
@@ -142,4 +138,9 @@ table {
     background-color: #d9edf7;
     border-color: #bce8f1;
   }
+}
+
+.status {
+  &.accepted { color: $green; }
+  &.rejected { color: $red; }
 }

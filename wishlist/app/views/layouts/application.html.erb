@@ -17,12 +17,12 @@
   <nav class="top-bar" id="main-menu" data-topbar role="navigation">
     <section class="top-bar-left">
       <ul class="menu vertical medium-horizontal">
-        <li class="menu-text show-for-medium"><%= link_to 'WishList', root_path %></li>
+        <li class="menu-text show-for-medium">WishList</li>
         <% if user_signed_in? %>
-          <li><%= nav_link 'My WishLists', lists_path %></li>
-          <li><%= nav_link 'My Invitations', my_invitations_path %></li>
-          <li><%= nav_link 'My Notifications', my_notifications_path %></li>
-          <li><%= nav_link 'Gifts to buy', gifts_to_buy_path %></li>
+        <%= nav_link 'My WishLists', lists_path %>
+        <%= nav_link 'My Invitations', invitations_path %>
+        <%= nav_link 'My Notifications', notifications_path %>
+        <%= nav_link 'Gifts to buy', gifts_to_buy_path %>
         <% end %>
       </ul>
     </section>
@@ -30,10 +30,10 @@
       <ul class="menu vertical medium-horizontal">
         <li class="menu-text show-for-small-only">User</li>
         <% if user_signed_in? %>
-          <li><%= link_to 'Account (' + current_user.email + ')', edit_user_registration_path %></li>
-          <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+        <%= nav_link 'Account (' + current_user.email + ')', edit_user_registration_path %>
+        <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
         <% else %>
-          <li><%= link_to 'Account', new_user_session_path %></li>
+        <%= nav_link 'Account', new_user_session_path %>
         <% end %>
       </ul>
     </section>
@@ -44,7 +44,6 @@
   <% flash.each do |key, value| %>
     <div  class="<%= key %>"><%= value %></div>
   <% end %>
-
 </div>
 
 <div class="main-content">
