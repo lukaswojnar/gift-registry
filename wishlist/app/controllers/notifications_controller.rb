@@ -30,7 +30,7 @@ class NotificationsController < ApplicationController
 
       if @notification.date > @list.event_date
         flash[:notice] = "Notification cannot be set after date of event."
-        redirect_to(:back)
+        redirect_to(:my_notifications)
       else
         if @notification.save
           flash[:success] = "Notification has been created."
@@ -48,7 +48,7 @@ class NotificationsController < ApplicationController
   def destroy
     @notification = Notification.find(params[:id])
     @notification.destroy
-    redirect_to(:back)
+    redirect_to(:my_notifications)
     flash[:notice] = "Notification has been deleted."
   end
 
