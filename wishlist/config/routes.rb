@@ -22,6 +22,6 @@ Rails.application.routes.draw do
 
   # routes for notifications
   post '/notifications/create' => 'notifications#create'
-  get '/notifications' => 'notifications#index'
+  get '/notifications' => 'notifications#index', :as => :my_notifications
   get '/notifications/create/:list_id' => 'notifications#new', :as => :create_notification
 end

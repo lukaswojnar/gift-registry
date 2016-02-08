@@ -48,8 +48,8 @@ class NotificationsController < ApplicationController
   def destroy
     @notification = Notification.find(params[:id])
     @notification.destroy
-    redirect_to(:my_notifications)
     flash[:notice] = "Notification has been deleted."
+    redirect_to(:my_notifications)
   end
 
   private
