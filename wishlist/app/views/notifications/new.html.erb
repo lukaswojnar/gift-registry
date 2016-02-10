@@ -28,7 +28,7 @@
   <div class="row">
     <div class="small-12 columns">
       <%= f.label :date %>
-      <%= f.date_select :date, { class: 'datepicker' } %>
+      <%= f.text_field :date, class: 'datetimepicker' %>
     </div>
   </div>
   <%= f.hidden_field :list_id, :value => @list.id %>
@@ -39,9 +39,8 @@
   </div>
 <% end %>
 
-<script type="text/javascript">
-    $('.datepicker').datetimepicker({
-        timepicker: false,
-        format:'Y/m/d'
-      });
+<script>
+  $('.datetimepicker').fdatepicker({
+    format: 'dd. mm. yyyy'
+  });
 </script>
