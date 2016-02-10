@@ -40,7 +40,12 @@
 <% end %>
 
 <script>
+  var nowTemp = new Date();
+  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
   $('.datetimepicker').fdatepicker({
-    format: 'dd. mm. yyyy'
-  });
+    format: 'dd. mm. yyyy',
+    onRender: function (date) {
+      return date.valueOf() < now.valueOf() ? 'disabled' : '';
+    }
+  }).data('datepicker');
 </script>
