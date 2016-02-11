@@ -24,7 +24,7 @@
       <% if @multiple_lists %>
       <td><%= link_to g.list.title, list_detail_path(g.list.id) %></td>
       <% end %>
-      <td><% if g.image.url(:small_thumb) %><%= link_to image_tag(g.image.url(:small_thumb)), g.image.url(:original) %><% else %><%= image_tag(g.image.url(:small_thumb)) %><% end %></td>
+      <td><% if g.image.url(:small_thumb) %><%= link_to image_tag(g.image.url(:small_thumb)), g.image.url(:original), :data => { :lightbox => 'group-gifts' } %><% else %><%= image_tag(g.image.url(:small_thumb)) %><% end %></td>
       <td><%= g.title %></td>
       <td><%= g.description %></td>
       <td><%= link_to g.link, g.link %></td>
