@@ -15,7 +15,7 @@
       <% @title = List.find(notf.list_id).title %>
       <tr>
         <td><%= @title %></td>
-        <td><%= notf.date %></td>
+        <td><%= notf.date %> 7:30 a.m.</td>
         <td><%= link_to 'Delete', notification_path(notf), { method: :delete, class: 'button expand alert', data: { confirm: "Are you sure to delete notification for #{@title}?"} } %></td>
       </tr>
     <% end %>
