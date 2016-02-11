@@ -59,7 +59,7 @@ class NotificationsController < ApplicationController
 
   # do we need Update? user just can create and delete notification.
 
-  #class method for notifiyng users?
+  #class method for notifying users?
   def self.notify
     @all_notifications = Notification.all
 
@@ -70,8 +70,6 @@ class NotificationsController < ApplicationController
         notf.destroy
       end
     end
-
-
   end
 
 end
