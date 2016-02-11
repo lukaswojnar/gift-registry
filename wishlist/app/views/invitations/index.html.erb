@@ -5,7 +5,6 @@
     <div class="row margin-top<%= i.list.event_date < DateTime.now ? ' passed-row' : '' %>">
       <div class="small-8 columns">
         <h2><%= link_to i.list.title, list_detail_path(i.list.id) %></h2>
-        Created by: <%= i.user.email %><br>
         Event date: <%= i.list.event_date.strftime("%d. %m. %Y, %H:%M") %> (<%= distance_of_time_in_words(i.list.event_date, Time.current) %>)<br>
         <%= link_to "More information about #{i.list.title}", list_detail_path(i.list.id) %><br>
         <% if i.list.event_date < DateTime.now %><strong>This event already passed.</strong><% end %>
