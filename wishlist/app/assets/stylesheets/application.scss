@@ -11,6 +11,8 @@ $red                : #b94a48;
 // Import must be specified only after basic colors are set. This way I can use colors in Foundation settings.
 @import "foundation_and_overrides";
 
+@import 'lightbox';
+
 body {
   background: url('giftly.png') repeat;
 }

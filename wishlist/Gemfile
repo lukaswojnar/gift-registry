@@ -38,6 +38,7 @@ gem 'rolify'
 gem 'whenever', require: false
 gem 'validates_timeliness', '~> 4.0'
 gem 'paperclip'
+gem 'lightbox2-rails'
 
 # The latest datetimepicker-rails gem doesn't work with Foundation 6. Installed manually using local JS and CSS files instead.
 # gem 'foundation-datetimepicker-rails'

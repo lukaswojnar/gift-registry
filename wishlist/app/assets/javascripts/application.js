@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require lightbox
 // DatePicker.js file is loaded automatically when it is stored in /app/assets/javascripts/ folder
 // require foundation-datetimepicker
 //= require_tree .
